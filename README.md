@@ -4,5 +4,5 @@ Gruppe 1
 ## Dokumentation zum RSA-Verfahren
 Inhaltsverzeichnis
 * [X] Anfang
-* [] Mitte
-* [] Ende
+* Mitte
+* Ende
