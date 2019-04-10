@@ -1,10 +1,12 @@
 Gruppe 1
+
+Start: 04. April 2019
+
+Treffen: 10. April 2019
+
 # **RSA_SEI_multithreaded**
 
 ## Dokumentation zum RSA-Verfahren
-
-Start: 04. April 2019
-Treffen: 10. April 2019
 
 ## Inhaltsverzeichnis
 * GitHub Repository nach IntelliJ importieren
