@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -366,7 +367,7 @@ public class GUI extends JFrame {
     });
   }
 
-  public int extendedEuklid(int phi, boolean eea, int eEEA) {
+  public int extendedEuklid2(int phi, boolean eea, int eEEA) {
     int u = 0;
     int u2 = 1;
     int qe = phi;
@@ -374,6 +375,7 @@ public class GUI extends JFrame {
     int r = 1;
     int r2;
     int cache;
+    //EA
     while (qe2 != 0) {
       r2 = r;
       r = (qe - (qe % qe2)) / qe2;
@@ -381,6 +383,7 @@ public class GUI extends JFrame {
       qe2 = qe % qe2;
       qe = cache;
       if (qe != eEEA) {
+        //erweiterung des EA
         cache = u2;
         u2 = u - r2 * u2;
         u = cache;
@@ -392,4 +395,13 @@ public class GUI extends JFrame {
       return qe;
     }
   }
+
+
+   public int extendedEuklid(int phi,boolean eea, int eEEA){
+     ExtendedEuklid klasse = new ExtendedEuklid(phi,eEEA,eea);
+     int i = ExtendedEuklid.feea(eeb -> {
+          });
+          return i;
+      }
+
 }
