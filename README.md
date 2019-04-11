@@ -44,7 +44,7 @@ Treffen: 10. April 2019
 * [x] Benutzereingaben
 * [x] Primzahlentest
 * [x] Phi, N berechnen
-* [x] E testen
+* [x] E, N testen
 * [x] ggT und Inverses Element berechnen
 * [x] Verschlüsseln
 * [x] Entschlüsseln
