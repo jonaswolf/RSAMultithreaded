@@ -39,3 +39,15 @@ Phi = (p-1) * (q-1)
 N = p * q
 Verschlüsseln:
 Entschlüsseln:
+
+## ToDo`s
+* [x] Benutzereingaben
+* [x] Primzahlentest
+* [x] Phi, N berechnen
+* [x] E testen
+* [x] ggT und Inverses Element berechnen
+* [x] Verschlüsseln
+* [x] Entschlüsseln
+* [x] Parallelisieren
+
+**Hinweis**: Alle Berechnungen funktional, nicht objektorientiert
