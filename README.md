@@ -38,7 +38,9 @@ Treffen: 10. April 2019
 * Phi = (p-1) * (q-1)
 * N = p * q
 * Verschlüsseln:
+* Public Key: Kpub
 * Entschlüsseln:
+* Private Key: Kpriv
 
 ## ToDo`s
 * [x] Benutzereingaben
