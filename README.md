@@ -35,10 +35,10 @@ Treffen: 10. April 2019
 * Die Nachricht "M" ist nun wieder lesbar
 
 ## Wichtige Berechnungsformeln
-Phi = (p-1) * (q-1)
-N = p * q
-Verschlüsseln:
-Entschlüsseln:
+* Phi = (p-1) * (q-1)
+* N = p * q
+* Verschlüsseln:
+* Entschlüsseln:
 
 ## ToDo`s
 * [x] Benutzereingaben
