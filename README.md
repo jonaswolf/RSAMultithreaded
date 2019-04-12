@@ -37,10 +37,10 @@ Treffen: 10. April 2019
 ## Wichtige Berechnungsformeln
 * Phi = (p-1) * (q-1)
 * N = p * q
-* Verschlüsseln:
-* Public Key: Kpub
-* Entschlüsseln:
-* Private Key: Kpriv
+* Verschlüsseln: M^e mod(n)
+* Public Key: Kpub (e,n)
+* Entschlüsseln: M^d mod(n)
+* Private Key: Kpriv (d,n)
 
 ## ToDo`s
 * [x] Benutzereingaben
