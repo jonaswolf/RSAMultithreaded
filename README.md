@@ -49,7 +49,10 @@ Treffen: 10. April 2019
 * [x] E, N testen
 * [x] ggT und Inverses Element berechnen
 * [x] Verschlüsseln
-* [x] Entschlüsseln
+* [ ] Entschlüsseln
 * [x] Parallelisieren
+* [ ] Randomizer Methode
+* [ ] User Interface
+* [ ] Zusammenführung aller Teilaufgaben
 
 **Hinweis**: Alle Berechnungen funktional, nicht objektorientiert
