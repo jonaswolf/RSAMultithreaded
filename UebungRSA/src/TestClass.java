@@ -11,7 +11,7 @@ public class TestClass {
     BigInteger e = new BigInteger("35");
     BigInteger p = new BigInteger("100000000019");
     BigInteger q = new BigInteger("191938579691");
-    RSA.encry(text,p,q,e);
+    BigInteger[] verschluesselt =  RSA.encry(text,p,q,e);
     }
 
 

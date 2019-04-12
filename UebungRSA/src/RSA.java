@@ -2,7 +2,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 public class RSA {
-  public static void encry(String word, BigInteger p,BigInteger q, BigInteger e){
+  public static BigInteger[] encry(String word, BigInteger p,BigInteger q, BigInteger e){
     //int e = 35;
     //p*p=n>200000000
     //BigInteger p = new BigInteger("100000000019");
@@ -51,5 +51,6 @@ public class RSA {
     for(int i = 0;i<wordsBigInt.length;i++){
       System.out.println(wordsBigInt[i]);
     }
+    return wordsBigInt;
   }
 }
