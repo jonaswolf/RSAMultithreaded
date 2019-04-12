@@ -13,7 +13,7 @@ public class ExtendedEuklid {
   }
 
   public static int feea(Consumer<ExtendedEuklid> m) {
-    //ExtendedEuklid f = new ExtendedEuklid();
+   // ExtendedEuklid f = new ExtendedEuklid();
     int u = 0;
     int u2 = 1;
     int qe = sphi;

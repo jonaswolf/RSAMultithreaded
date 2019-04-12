@@ -301,6 +301,17 @@ public class GUI extends JFrame {
     });
   }
 
+  public void encry2(){
+    this.buttonEncry.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String word = textWTE.getText();
+        String[] words = new String[5];
+
+      }
+    });
+  }
+
   public void encry() {
     this.buttonEncry.addActionListener(new ActionListener() {
       @Override
@@ -400,6 +411,7 @@ public class GUI extends JFrame {
    public int extendedEuklid(int phi,boolean eea, int eEEA){
      ExtendedEuklid klasse = new ExtendedEuklid(phi,eEEA,eea);
      int i = ExtendedEuklid.feea(eeb -> {
+
           });
           return i;
       }
