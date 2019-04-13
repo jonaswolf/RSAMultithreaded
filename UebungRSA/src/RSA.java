@@ -75,8 +75,9 @@ public class RSA {
     return false;
   }
 
-  public BigInteger getD(BigInteger p, BigInteger q, BigInteger e){
-
+  public static BigInteger getD(BigInteger p, BigInteger q, BigInteger e){
+    BigInteger phi = (p.subtract(BigInteger.valueOf(0))).multiply(q.subtract(BigInteger.valueOf(0)));
+  return inverses.fkt(phi,e);
   }
 
   //Berechnung des Inverses von Arthur & Dennis

@@ -18,6 +18,7 @@ public class UI extends JFrame {
         BigInteger p = RSA.getPrime();
         BigInteger q = RSA.getPrime();
         BigInteger e = RSA.getE(p,q);
+        BigInteger d = RSA.getD(p,q,e);
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel centerPanel = new JPanel(new FlowLayout());
