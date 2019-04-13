@@ -4,7 +4,7 @@
     <list default="true" id="ef93610e-4569-4012-80d8-db9ecf8544b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +29,34 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+            <state relative-caret-position="252">
+              <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/UI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="5" column="32" lean-forward="true" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5122#5123#0" expanded="true" />
+                <element signature="e#5146#5147#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Login.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -62,6 +85,7 @@
       <find>labelDecry</find>
       <find>buttonEncry</find>
       <find>phi</find>
+      <find>System</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -82,6 +106,7 @@
         <option value="$PROJECT_DIR$/src/ExtendedEuklid.java" />
         <option value="$PROJECT_DIR$/src/RSA.java" />
         <option value="$PROJECT_DIR$/src/TestClass.java" />
+        <option value="$PROJECT_DIR$/src/UI.java" />
       </list>
     </option>
   </component>
@@ -125,7 +150,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555185711669" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555185723657" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../RSA_Functional_Project" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -189,7 +214,7 @@
       <workItem from="1543244121556" duration="1846000" />
       <workItem from="1554376655644" duration="19316000" />
       <workItem from="1555085457512" duration="1341000" />
-      <workItem from="1555148124941" duration="11215000" />
+      <workItem from="1555148124941" duration="11494000" />
     </task>
     <task id="LOCAL-00001" summary="Säuberung des Codes und Ergänzung von Kommentaren">
       <created>1555086002774</created>
@@ -216,7 +241,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69166000" />
+    <option name="totallyTimeSpent" value="69445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -283,8 +308,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TestClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+        <state relative-caret-position="252">
+          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="32" lean-forward="true" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5122#5123#0" expanded="true" />
+            <element signature="e#5146#5147#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -3,7 +3,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
-public class UI extends Frame() {
+public class UI extends JFrame {
 
     private String word;
     private static RSA rsa;
