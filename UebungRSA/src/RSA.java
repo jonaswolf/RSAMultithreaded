@@ -1,5 +1,6 @@
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Random;
 
 public class RSA {
   /**
@@ -47,5 +48,57 @@ public class RSA {
             .map(x -> x.modPow(e,n))
             .toArray(BigInteger[]::new);
     return wordsBigInt;
+  }
+
+  public static BigInteger getPrime(){
+    return BigInteger.probablePrime(4096,new Random());
+  }
+
+  //Methode um e zu berechnen. von Arthur
+  public static BigInteger getE(BigInteger p, BigInteger q){
+    BigInteger e = (BigInteger.probablePrime(1024,new Random())).add(new BigInteger("1"));
+    int zaehler = 1;
+    do{
+      zaehler++;
+      e = e.add(new BigInteger("1"));
+    }while (!testE(p,q,e));
+    return e;
+  }
+
+  //Methode um zu prüfen ob e passend ist. von Arthur & Dennis
+  public static boolean testE(BigInteger p,BigInteger q,BigInteger e){
+    BigInteger phi = (p.subtract(BigInteger.valueOf(0))).multiply(q.subtract(BigInteger.valueOf(0)));
+      if(phi.gcd(e).equals(new BigInteger("1"))){
+
+      return true;
+    }
+    return false;
+  }
+  //Berechnung des Inverses von Arthur & Dennis
+  Euklid inverses = (BigInteger qe, BigInteger qe2) -> {
+    BigInteger u = new BigInteger("0");
+    BigInteger u2 = new BigInteger("1");
+    BigInteger r = new BigInteger("1");
+    BigInteger r2;
+    BigInteger cache;
+    final BigInteger seEEA = qe2;
+    while (!qe2.equals(new BigInteger("0"))){
+      r2 = r;
+      r = qe.subtract(qe.mod(qe2)).divide(qe2);
+      cache = qe2;
+      qe2 = qe.mod(qe2);
+      qe = cache;
+      if(!qe.equals(seEEA)){
+        //erweiterung des EA
+        cache = u2;
+        u2 = u.subtract(r2.multiply(u2));
+        u = cache;
+      }
+    }
+    return u2;
+  };
+
+  interface Euklid {
+    BigInteger fkt(BigInteger qe, BigInteger qe2);
   }
 }

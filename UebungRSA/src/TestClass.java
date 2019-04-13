@@ -9,18 +9,20 @@ public class TestClass {
 
   public static void main(String[] args) {
     String text = "Wörter und so";
-    BigInteger e = new BigInteger("35");
     System.out.println("Ermittlung Zahl 1");
-    BigInteger p = new BigInteger(String.valueOf(BigInteger.probablePrime(4096,new Random())));
+    BigInteger p = RSA.getPrime();
     System.out.println(p);
-    System.out.println("p is prime: "+ p.isProbablePrime(100));
+    System.out.println("p is prime: " + p.isProbablePrime(100));
     System.out.println("Ermittlung Zahl 2");
-    BigInteger q = new BigInteger(String.valueOf(BigInteger.probablePrime(4096,new Random())));
+    BigInteger q = RSA.getPrime();
     System.out.println(q);
-    System.out.println("p is prime: "+ q.isProbablePrime(100));
-    BigInteger[] verschluesselt =  RSA.encry(text,p,q,e);
-    }
-
+    System.out.println("p is prime: " + q.isProbablePrime(100));
+    System.out.println("Ermittlung e");
+    BigInteger e = RSA.getE(p, q);
+    System.out.println("E ermittelt");
+    System.out.println("Start Verschlüsselung");
+    BigInteger[] verschluesselt = RSA.encry(text, p, q, e);
 
 
   }
+}
