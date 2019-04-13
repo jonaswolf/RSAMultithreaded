@@ -17,6 +17,9 @@ public class RSA {
    * Ein Array an verschlüsselten Teilsequenzen im BigInteger Format
    */
   public static BigInteger[] encry(String word, BigInteger p,BigInteger q, BigInteger e){
+    if(word.equals("")){
+      return new BigInteger[0];
+    }
     //Berechnung von n
     BigInteger n = p.multiply(q);
     //Bestimmung der relativen Größe der Zeichen Gruppe.

@@ -50,13 +50,13 @@ public class UI extends JFrame {
         //create & assign elements for keys area
         keys.add(new JLabel("Private Key: "));
         keys.add(new JTextField("GENERATED PRIVATE KEY"));
-        keys.add(new JTextField(" n: " + n));
-        keys.add(new JTextField(" d: " + d));
+        keys.add(new JTextField(" n: "));
+        keys.add(new JTextField(" d: "));
 
         keys.add(new JLabel("Public Key: "));
         keys.add(new JTextField("GENERATED PUBLIC KEY"));
-        keys.add(new JTextField(" n: " + n));
-        keys.add(new JTextField(" e: " + e));
+        keys.add(new JTextField(" n: "));
+        keys.add(new JTextField(" e: "));
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
@@ -64,8 +64,8 @@ public class UI extends JFrame {
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
-        JLabel encryptedWord = new JTextField("ENCRYPTED");
-        JLabel decryptedWord = new JTextField("DECRYPTED");
+        JTextField encryptedWord = new JTextField("ENCRYPTED");
+        JTextField decryptedWord = new JTextField("DECRYPTED");
 
         inputAndOutput.add(inputText);
         inputAndOutput.add(new JLabel("Ecrypted word"));
@@ -103,7 +103,7 @@ public class UI extends JFrame {
                 }
                 System.out.println("ENCRYPT");
                 word = inputText.getText();
-                inputText.setText(" ");
+                inputText.setText("");
                 encryptedWord.setText("THIS WORD HAS BEEN ENCRYPTED");
                 System.out.println(word);
                 decryptedWord.setText("DECRYPT");
