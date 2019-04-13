@@ -10,7 +10,7 @@ public class Login extends JFrame{
     private static final String CANCEL_COMMAND = "cancel";
 
 
-    private Login(){
+    public Login(){
         this.setTitle("RSA Verschlüsselung");
 
         //Login Screen

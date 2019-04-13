@@ -11,7 +11,7 @@ public class UI extends JFrame {
     private static final String ENCRYPT_COMMAND = "encrypt";
     private static final String DECRYPT_COMMAND = "decrypt";
 
-    private UI (){
+    public UI (){
         //initialise RSA
         rsa = new RSA();
 
