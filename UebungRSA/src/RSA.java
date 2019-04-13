@@ -18,8 +18,8 @@ public class RSA {
   public static BigInteger[] encry(String word, BigInteger p,BigInteger q, BigInteger e){
     //Berechnung von n
     BigInteger n = p.multiply(q);
-    //Bestimmung der Größe der Zeichen Gruppe (Vorläufig. Warte auf Randomizer Methode und Zusammenführung einiger Teilaufgaben)
-    int threadAnz = word.length()/6;
+    //Bestimmung der relativen Größe der Zeichen Gruppe.
+    int threadAnz = 4;
     //Vorbereitung eines BigInt Arrays
     String[] words = new String[threadAnz+1];
     int teilLaenge = (word.length()-(word.length()%threadAnz))/threadAnz;
