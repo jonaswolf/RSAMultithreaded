@@ -49,14 +49,14 @@ public class UI extends JFrame {
 
         //create & assign elements for keys area
         keys.add(new JLabel("Private Key: "));
-        keys.add(new JLabel("GENERATED PRIVATE KEY"));
-        keys.add(new JLabel(" n: "));
-        keys.add(new JLabel(" d: "));
+        keys.add(new JTextField("GENERATED PRIVATE KEY"));
+        keys.add(new JTextField(" n: " + n));
+        keys.add(new JTextField(" d: " + d));
 
         keys.add(new JLabel("Public Key: "));
-        keys.add(new JLabel("GENERATED PUBLIC KEY"));
-        keys.add(new JLabel(" n: "));
-        keys.add(new JLabel(" e: "));
+        keys.add(new JTextField("GENERATED PUBLIC KEY"));
+        keys.add(new JTextField(" n: " + n));
+        keys.add(new JTextField(" e: " + e));
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
@@ -64,8 +64,8 @@ public class UI extends JFrame {
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
-        JLabel encryptedWord = new JLabel("ENCRYPTED");
-        JLabel decryptedWord = new JLabel("DECRYPTED");
+        JLabel encryptedWord = new JTextField("ENCRYPTED");
+        JLabel decryptedWord = new JTextField("DECRYPTED");
 
         inputAndOutput.add(inputText);
         inputAndOutput.add(new JLabel("Ecrypted word"));
