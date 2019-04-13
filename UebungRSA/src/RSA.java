@@ -2,7 +2,19 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 public class RSA {
-  //encry Methode von Dennis und Arthur
+  /**
+   * encry Methode von Dennis und Arthur
+   * @param word
+   * Die Sequenz die Verschlüsselt werden soll
+   * @param p
+   * Eine möglichst zufällige Primzahl im BigInteger Format
+   * @param q
+   * Eine möglichst zufällige Primzahl im BigInteger Format
+   * @param e
+   * Muss eine Zahl sein bei der ggT(e,phi)== 1 ist.
+   * @return
+   * Ein Array an verschlüsselten Teilsequenzen im BigInteger Format
+   */
   public static BigInteger[] encry(String word, BigInteger p,BigInteger q, BigInteger e){
     //Berechnung von n
     BigInteger n = p.multiply(q);
