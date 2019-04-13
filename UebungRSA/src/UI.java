@@ -11,14 +11,16 @@ public class UI extends JFrame {
     private static final String GENERATE_COMMAND = "generate";
     private static final String ENCRYPT_COMMAND = "encrypt";
     private static final String DECRYPT_COMMAND = "decrypt";
+    boolean generated = false;
+    BigInteger p;
+    BigInteger q;
+    BigInteger e;
+    BigInteger d;
+    BigInteger[] wordsList;
 
     public UI (){
         //initialise RSA
         rsa = new RSA();
-        BigInteger p = RSA.getPrime();
-        BigInteger q = RSA.getPrime();
-        BigInteger e = RSA.getE(p,q);
-        BigInteger d = RSA.getD(p,q,e);
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel centerPanel = new JPanel(new FlowLayout());
@@ -96,6 +98,9 @@ public class UI extends JFrame {
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
+                if(generated && !inputText.equals("")){
+                    wordsList = RSA.encry(inputText.getText(),p,q,e);
+                }
                 System.out.println("ENCRYPT");
                 word = inputText.getText();
                 inputText.setText(" ");
@@ -109,6 +114,15 @@ public class UI extends JFrame {
                 encryptedWord.setText("ENCRYPT");
 
             }else if (a.getActionCommand().equals(GENERATE_COMMAND)){
+                p = RSA.getPrime();
+                System.out.println(p);
+                q = RSA.getPrime();
+                System.out.println(q);
+                e = RSA.getE(p,q);
+                System.out.println(e);
+                d = RSA.getD(p,q,e);
+                System.out.println(d);
+                generated = true;
                 System.out.println("KEYS GENERATED");
             }
         };

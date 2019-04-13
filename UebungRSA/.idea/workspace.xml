@@ -4,6 +4,7 @@
     <list default="true" id="ef93610e-4569-4012-80d8-db9ecf8544b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/UebungRSA/RSA.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RSA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RSA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
@@ -19,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RSA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
+            <state relative-caret-position="1439">
+              <caret line="70" column="49" lean-forward="true" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1816#1817#0" expanded="true" />
@@ -42,12 +43,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+            <state relative-caret-position="124">
+              <caret line="101" column="69" lean-forward="true" selection-start-line="101" selection-start-column="69" selection-end-line="101" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5122#5123#0" expanded="true" />
-                <element signature="e#5146#5147#0" expanded="true" />
+                <element signature="e#5783#5784#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -152,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555186964635" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555188398430" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../RSA_Functional_Project" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -170,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Login">
+  <component name="RunManager" selected="Application.UI">
     <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Login" />
       <module name="UebungRSA" />
@@ -201,8 +201,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Login" />
         <item itemvalue="Application.UI" />
+        <item itemvalue="Application.Login" />
         <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.Starter" />
       </list>
@@ -232,7 +232,7 @@
       <workItem from="1543244121556" duration="1846000" />
       <workItem from="1554376655644" duration="19316000" />
       <workItem from="1555085457512" duration="1341000" />
-      <workItem from="1555148124941" duration="12644000" />
+      <workItem from="1555148124941" duration="14255000" />
     </task>
     <task id="LOCAL-00001" summary="Säuberung des Codes und Ergänzung von Kommentaren">
       <created>1555086002774</created>
@@ -259,13 +259,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70595000" />
+    <option name="totallyTimeSpent" value="72206000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18635875" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18635875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -274,7 +274,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32922733" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946293" visible="true" weight="0.24022347" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946293" visible="true" weight="0.24022347" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3988827" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -312,13 +312,6 @@
     <entry file="file://$PROJECT_DIR$/src/Starter.java" />
     <entry file="file://$PROJECT_DIR$/src/ExtendedEuklid.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI.java" />
-    <entry file="file://$PROJECT_DIR$/src/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TestClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -326,10 +319,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/RSA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
+        <state relative-caret-position="1439">
+          <caret line="70" column="49" lean-forward="true" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1816#1817#0" expanded="true" />
@@ -340,12 +340,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+        <state relative-caret-position="124">
+          <caret line="101" column="69" lean-forward="true" selection-start-line="101" selection-start-column="69" selection-end-line="101" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5122#5123#0" expanded="true" />
-            <element signature="e#5146#5147#0" expanded="true" />
+            <element signature="e#5783#5784#0" expanded="true" />
           </folding>
         </state>
       </provider>
