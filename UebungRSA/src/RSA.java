@@ -74,6 +74,11 @@ public class RSA {
     }
     return false;
   }
+
+  public BigInteger getD(BigInteger p, BigInteger q, BigInteger e){
+
+  }
+
   //Berechnung des Inverses von Arthur & Dennis
   Euklid inverses = (BigInteger qe, BigInteger qe2) -> {
     BigInteger u = new BigInteger("0");

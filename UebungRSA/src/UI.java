@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -14,7 +15,9 @@ public class UI extends JFrame {
     public UI (){
         //initialise RSA
         rsa = new RSA();
-
+        BigInteger p = RSA.getPrime();
+        BigInteger q = RSA.getPrime();
+        BigInteger e = RSA.getE(p,q);
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel centerPanel = new JPanel(new FlowLayout());
