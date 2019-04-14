@@ -37,6 +37,7 @@ Treffen: 10. April 2019
 ## Wichtige Berechnungsformeln
 * Phi = (p-1) * (q-1)
 * N = p * q
+* d = Inverses Element(Φ,E) + Phi
 * Verschlüsseln: M^e mod(n)
 * Public Key: Kpub (e,n)
 * Entschlüsseln: M^d mod(n)
@@ -53,6 +54,10 @@ Treffen: 10. April 2019
 * [x] Parallelisieren
 * [ ] Randomizer Methode
 * [ ] User Interface
+* [ ] Verschlüsselte Nachricht so abspeichern (.txt), dass man sie auf einem anderen PC entschlüsseln kann
+* [ ] dazu: Verschlüsselten Code als .txt abspeichern (mit d, N)
+* [ ] dazu: Import und Entschlüsselung der Daten aus der .txt Datei
+* [ ] Neben Verschlüsselungstextfeld: "Copy to Clipboard" - Button
 * [ ] Zusammenführung aller Teilaufgaben
 
-**Hinweis**: Alle Berechnungen funktional, nicht objektorientiert
+**Hinweis**: Alle Berechnungen o. Ä. funktional, nicht objektorientiert
