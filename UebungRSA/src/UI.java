@@ -98,8 +98,12 @@ public class UI extends JFrame {
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
-                if(generated && !inputText.equals("")){
+                if(generated && inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
+                }
+                else if(inputText.getText().length()==0){ }
+                else {
+                    inputText.setText("Gib was ein das sich lohnt zu verschlüsseln");
                 }
                 System.out.println("ENCRYPT");
                 word = inputText.getText();
