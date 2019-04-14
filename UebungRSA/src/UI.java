@@ -75,8 +75,8 @@ public class UI extends JFrame {
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
-        JTextField encryptedWord = new JTextField("ENCRYPTED");
-        JTextField decryptedWord = new JTextField("DECRYPTED");
+        JTextField encryptedWord = new JTextField("");
+        JTextField decryptedWord = new JTextField("");
 
 
         inputAndOutput.add(inputText);
@@ -138,12 +138,12 @@ public class UI extends JFrame {
                 word = inputText.getText();
                 inputText.setText("");
                 System.out.println(word);
-                decryptedWord.setText("DECRYPT");
+                decryptedWord.setText("");
 
             } else if (a.getActionCommand().equals(DECRYPT_COMMAND)) {
                 System.out.println("DECRYPT");
                 decryptedWord.setText("THIS WORD HAS BEEN DECRYPTED");
-                encryptedWord.setText("ENCRYPT");
+                encryptedWord.setText("");
 
             }else if (a.getActionCommand().equals(GENERATE_COMMAND)){
                 p = RSA.getPrime();
