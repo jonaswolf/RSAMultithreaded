@@ -126,7 +126,7 @@ public class UI extends JFrame {
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
                     String result = ("");
                     for(int i = 0;i<wordsList.length;i++){
-                        result = result+(wordsList[i].toString());
+                        result = result+(wordsList[i].toString())+" ";
                     }
                     encryptedWord.setText(result);
                 }
