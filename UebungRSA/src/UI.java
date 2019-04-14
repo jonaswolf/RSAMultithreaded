@@ -33,7 +33,7 @@ public class UI extends JFrame {
         ((GridLayout)keyGeneratorPanel.getLayout()).setVgap(15);
         ((GridLayout)encrypt.getLayout()).setVgap(15);
 
-        JPanel keys = new JPanel(new GridLayout(0,4));
+        JPanel keys = new JPanel(new GridLayout(0,6));
         JPanel generate = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         ((GridLayout)keys.getLayout()).setHgap(15);
@@ -46,15 +46,27 @@ public class UI extends JFrame {
         ((GridLayout)inputAndOutput.getLayout()).setHgap(15);
 
         //create & assign elements for keys area
+
+        JTextField generatedPrivKeyTF = new JTextField("GENERATED PRIVATE KEY");
+        JTextField generatedPubKeyTF = new JTextField("GENERATED PUBLIC KEY");
+        JTextField dTF = new JTextField(d);
+        JTextField n1TF = new JTextField(n);
+        JTextField eTF = new JTextField(e);
+        JTextField n2TF = new JTextField(n);
+
         keys.add(new JLabel("Private Key: "));
-        keys.add(new JTextField("GENERATED PRIVATE KEY"));
-        keys.add(new JTextField(" n: " + n));
-        keys.add(new JTextField(" d: " + d));
+        keys.add(generatedPrivKeyTF);
+        keys.add(new JLabel("n: "))
+        keys.add(n1TF);
+        keys.add(new JLabel("d: "))
+        keys.add(dTF);
 
         keys.add(new JLabel("Public Key: "));
-        keys.add(new JTextField("GENERATED PUBLIC KEY"));
-        keys.add(new JTextField(" n: " + n));
-        keys.add(new JTextField(" e: " + e));
+        keys.add(generatedPubKeyTF);
+        keys.add(new JLabel("n: "))
+        keys.add(n2TF));
+        keys.add(new JLabel("e: "))
+        keys.add(eTF);
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
