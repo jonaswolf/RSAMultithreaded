@@ -11,14 +11,16 @@ public class UI extends JFrame {
     private static final String GENERATE_COMMAND = "generate";
     private static final String ENCRYPT_COMMAND = "encrypt";
     private static final String DECRYPT_COMMAND = "decrypt";
+    boolean generated = false;
+    BigInteger p;
+    BigInteger q;
+    BigInteger e;
+    BigInteger d;
+    BigInteger[] wordsList;
 
     public UI (){
         //initialise RSA
         rsa = new RSA();
-        BigInteger p = RSA.getPrime();
-        BigInteger q = RSA.getPrime();
-        BigInteger e = RSA.getE(p,q);
-        BigInteger d = RSA.getD(p,q,e);
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel centerPanel = new JPanel(new FlowLayout());
@@ -33,7 +35,7 @@ public class UI extends JFrame {
         ((GridLayout)keyGeneratorPanel.getLayout()).setVgap(15);
         ((GridLayout)encrypt.getLayout()).setVgap(15);
 
-        JPanel keys = new JPanel(new GridLayout(0,6));
+        JPanel keys = new JPanel(new GridLayout(0,4));
         JPanel generate = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         ((GridLayout)keys.getLayout()).setHgap(15);
@@ -46,27 +48,15 @@ public class UI extends JFrame {
         ((GridLayout)inputAndOutput.getLayout()).setHgap(15);
 
         //create & assign elements for keys area
-
-        JTextField generatedPrivKeyTF = new JTextField("GENERATED PRIVATE KEY");
-        JTextField generatedPubKeyTF = new JTextField("GENERATED PUBLIC KEY");
-        JTextField dTF = new JTextField(d);
-        JTextField n1TF = new JTextField(n);
-        JTextField eTF = new JTextField(e);
-        JTextField n2TF = new JTextField(n);
-
         keys.add(new JLabel("Private Key: "));
-        keys.add(generatedPrivKeyTF);
-        keys.add(new JLabel("n: "))
-        keys.add(n1TF);
-        keys.add(new JLabel("d: "))
-        keys.add(dTF);
+        keys.add(new JTextField("GENERATED PRIVATE KEY"));
+        keys.add(new JTextField(" n: "));
+        keys.add(new JTextField(" d: "));
 
         keys.add(new JLabel("Public Key: "));
-        keys.add(generatedPubKeyTF);
-        keys.add(new JLabel("n: "))
-        keys.add(n2TF));
-        keys.add(new JLabel("e: "))
-        keys.add(eTF);
+        keys.add(new JTextField("GENERATED PUBLIC KEY"));
+        keys.add(new JTextField(" n: "));
+        keys.add(new JTextField(" e: "));
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
@@ -74,8 +64,8 @@ public class UI extends JFrame {
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
-        JLabel encryptedWord = new JTextField("ENCRYPTED");
-        JLabel decryptedWord = new JTextField("DECRYPTED");
+        JTextField encryptedWord = new JTextField("ENCRYPTED");
+        JTextField decryptedWord = new JTextField("DECRYPTED");
 
         inputAndOutput.add(inputText);
         inputAndOutput.add(new JLabel("Ecrypted word"));
@@ -108,9 +98,16 @@ public class UI extends JFrame {
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
+                if(generated && inputText.getText().length()>4){
+                    wordsList = RSA.encry(inputText.getText(),p,q,e);
+                }
+                else if(inputText.getText().length()==0){ }
+                else {
+                    inputText.setText("Gib was ein das sich lohnt zu verschlüsseln");
+                }
                 System.out.println("ENCRYPT");
                 word = inputText.getText();
-                inputText.setText(" ");
+                inputText.setText("");
                 encryptedWord.setText("THIS WORD HAS BEEN ENCRYPTED");
                 System.out.println(word);
                 decryptedWord.setText("DECRYPT");
@@ -121,6 +118,15 @@ public class UI extends JFrame {
                 encryptedWord.setText("ENCRYPT");
 
             }else if (a.getActionCommand().equals(GENERATE_COMMAND)){
+                p = RSA.getPrime();
+                System.out.println(p);
+                q = RSA.getPrime();
+                System.out.println(q);
+                e = RSA.getE(p,q);
+                System.out.println(e);
+                d = RSA.getD(p,q,e);
+                System.out.println(d);
+                generated = true;
                 System.out.println("KEYS GENERATED");
             }
         };

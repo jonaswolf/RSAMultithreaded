@@ -17,6 +17,9 @@ public class RSA {
    * Ein Array an verschlüsselten Teilsequenzen im BigInteger Format
    */
   public static BigInteger[] encry(String word, BigInteger p,BigInteger q, BigInteger e){
+    if(word.equals("")){
+      return new BigInteger[0];
+    }
     //Berechnung von n
     BigInteger n = p.multiply(q);
     //Bestimmung der relativen Größe der Zeichen Gruppe.
@@ -75,13 +78,13 @@ public class RSA {
     return false;
   }
 
-  public static BigInteger getD(BigInteger p, BigInteger q, BigInteger e){
+  public static BigInteger getD(BigInteger p, BigInteger q,BigInteger e){
     BigInteger phi = (p.subtract(BigInteger.valueOf(0))).multiply(q.subtract(BigInteger.valueOf(0)));
-  return inverses.fkt(phi,e);
+  return phi.add(inverses.fkt(phi,e));
   }
 
   //Berechnung des Inverses von Arthur & Dennis
-  Euklid inverses = (BigInteger qe, BigInteger qe2) -> {
+  static Euklid inverses = (BigInteger qe, BigInteger qe2) -> {
     BigInteger u = new BigInteger("0");
     BigInteger u2 = new BigInteger("1");
     BigInteger r = new BigInteger("1");
