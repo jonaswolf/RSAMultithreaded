@@ -110,8 +110,25 @@ public class UI extends JFrame {
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
-                if(generated && inputText.getText().length()>4){
+                if(!generated){
+                    p = RSA.getPrime();
+                    System.out.println(p);
+                    q = RSA.getPrime();
+                    System.out.println(q);
+                    e = RSA.getE(p,q);
+                    System.out.println(e);
+                    d = RSA.getD(p,q,e);
+                    System.out.println(d);
+                    generated = true;
+                    System.out.println("KEYS GENERATED");
+                }
+                if(inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
+                    String result = ("");
+                    for(int i = 0;i<wordsList.length;i++){
+                        result = result+(wordsList[i].toString());
+                    }
+                    encryptedWord.setText(result);
                 }
                 else if(inputText.getText().length()==0){ }
                 else {
@@ -120,7 +137,6 @@ public class UI extends JFrame {
                 System.out.println("ENCRYPT");
                 word = inputText.getText();
                 inputText.setText("");
-                encryptedWord.setText("THIS WORD HAS BEEN ENCRYPTED");
                 System.out.println(word);
                 decryptedWord.setText("DECRYPT");
 
