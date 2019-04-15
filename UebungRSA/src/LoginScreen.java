@@ -3,14 +3,14 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame{
+public class LoginScreen extends JFrame{
 
     private String name, pword;
     private static final String OK_COMMAND = "ok";
     private static final String CANCEL_COMMAND = "cancel";
 
 
-    public Login(){
+    public LoginScreen(){
         this.setTitle("RSA Verschlüsselung");
 
         //Login Screen
@@ -84,7 +84,7 @@ public class Login extends JFrame{
     }
 
     public static void main(String[] args) {
-        new Login();
+        new LoginScreen();
     }
 
 }

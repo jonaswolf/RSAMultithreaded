@@ -19,6 +19,7 @@ public class UI extends JFrame {
     BigInteger[] wordsList;
 
     public UI (){
+
         //initialise RSA
         rsa = new RSA();
         // initialize Panels
@@ -66,7 +67,9 @@ public class UI extends JFrame {
 
         keys.add(new JLabel("Public Key: "));
         keys.add(generatedPubKey);
+        keys.add(new JLabel(" n: "));
         keys.add(n2TF);
+        keys.add(new JLabel(" e: "));
         keys.add(eTF);
 
         //create & assign elements for generate area
