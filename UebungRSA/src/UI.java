@@ -53,10 +53,18 @@ public class UI extends JFrame {
         JTextField n1TF = new JTextField();
         JTextField n2TF = new JTextField();
         JTextField dTF = new JTextField();
-        JTextField eTF = new JTextField()
-                ;
+        JTextField eTF = new JTextField();
+
+        n1TF.setEditable(false);
+        n2TF.setEditable(false);
+        dTF.setEditable(false);
+        eTF.setEditable(false);
+
         JTextField generatedPrivKey = new JTextField();
         JTextField generatedPubKey = new JTextField();
+
+        generatedPrivKey.setEditable(false);
+        generatedPubKey.setEditable(false);
 
         keys.add(new JLabel("Private Key: "));
         keys.add(generatedPrivKey);
@@ -81,6 +89,8 @@ public class UI extends JFrame {
         JTextField encryptedWord = new JTextField("");
         JTextField decryptedWord = new JTextField("");
 
+        encryptedWord.setEditable(false);
+        decryptedWord.setEditable(false);
 
         inputAndOutput.add(inputText);
         inputAndOutput.add(new JLabel("Ecrypted word"));
