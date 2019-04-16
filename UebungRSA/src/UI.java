@@ -60,21 +60,14 @@ public class UI extends JFrame {
         dTF.setEditable(false);
         eTF.setEditable(false);
 
-        JTextField generatedPrivKey = new JTextField();
-        JTextField generatedPubKey = new JTextField();
-
-        generatedPrivKey.setEditable(false);
-        generatedPubKey.setEditable(false);
 
         keys.add(new JLabel("Private Key: "));
-        keys.add(generatedPrivKey);
         keys.add(new JLabel(" n: "));
         keys.add(n1TF);
         keys.add(new JLabel(" d: "));
         keys.add(dTF);
 
         keys.add(new JLabel("Public Key: "));
-        keys.add(generatedPubKey);
         keys.add(new JLabel(" n: "));
         keys.add(n2TF);
         keys.add(new JLabel(" e: "));
