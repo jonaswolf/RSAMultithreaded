@@ -36,7 +36,7 @@ public class UI extends JFrame {
         ((GridLayout)keyGeneratorPanel.getLayout()).setVgap(15);
         ((GridLayout)encrypt.getLayout()).setVgap(15);
 
-        JPanel keys = new JPanel(new GridLayout(0,6));
+        JPanel keys = new JPanel(new GridLayout(0,5));
         JPanel generate = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         ((GridLayout)keys.getLayout()).setHgap(15);
@@ -126,7 +126,7 @@ public class UI extends JFrame {
                     d = RSA.getD(p,q,e);
                     System.out.println(d);
                     generated = true;
-                    System.out.println("KEYS GENERATED");
+                       System.out.println("KEYS GENERATED");
                 }
                 if(inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
