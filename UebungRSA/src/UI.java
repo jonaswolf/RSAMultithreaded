@@ -187,6 +187,10 @@ public class UI extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+
+        //Lass den Frame in Bildschirmmitte erscheinen
+        //WICHTIG: Das hier muss nach .pack und .setVisible stehen!
+        this.setLocationRelativeTo(null);
     }
 
     public static void main(String[] args) {
