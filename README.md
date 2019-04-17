@@ -10,6 +10,7 @@ Treffen: 10. April 2019
 
 ## Inhaltsverzeichnis
 * GitHub Repository nach IntelliJ importieren
+* Wichtige Git Bash Kommandos
 * Wie funktioniert der RSA Algorithmus?
 * Wichtige Berechnungsformeln
 
@@ -17,8 +18,8 @@ Treffen: 10. April 2019
 * URL des GitHub Repositories kopieren
 * IntelliJ öffnen
 * Oben links auf den Button "File" klicken
-* -> New...
-* -> Object from Version Control
+* -> `New...`
+* -> `Object from Version Control`
 * -> URL einfügen & Speicherort auswählen
 
 ## Wie benutze ich Git Bash richtig, um das Projekt zu synchronisieren?
@@ -27,24 +28,29 @@ Treffen: 10. April 2019
 * Rechtsklick innerhalb des Ordners
 * Klicken auf: "Git Bash Here"
 * **Bestehendes Repository an den lokalen Speicherort kopieren**:
-* `git clone URL` -> ("URL" wird durch die URL des Repositories ersetzt)
+* `git clone URL`
+* -> ("URL" wird durch die URL des Repositories ersetzt)
 * **Aktualisierungen auf Git hochladen**:
-* `git add FOLDER_NAME` -> ("FOLDER_NAME" wird durch den Namen des Ordners ersetzt, welcher die Aktualisierungen enthält)
-* `git commit -m "COMMIT_NAME"` -> ("COMMIT_NAME" wird ersetzt durch den Namen der Aktualisierung, bspw. "Fixed Bugs")
+* `git add FOLDER_NAME`
+* -> ("FOLDER_NAME" wird durch den Namen des Ordners ersetzt, welcher die Aktualisierungen enthält)
+* `git commit -m "COMMIT_NAME"`
+* -> ("COMMIT_NAME" wird ersetzt durch den Namen der Aktualisierung, bspw. "Fixed Bugs")
 * `git push origin master`
 * **Neueste Version des Repositories runterladen**:
 * `git pull`
 
+**Hinweis**: Oben aufgeführte Git Bash Kommandos sind an dieses Projekt angepasst, können variieren
+
 ## Wie funktioniert der RSA Algorithmus?
 * Der Benutzer muss zu Beginn zwei Primzahlen eingeben (p,q)
-* Die Eingaben werden in der Methode "isPrime" getestet
+* Die Eingaben werden in der Methode `isPrime` getestet (veraltet, wird nun durch BigInt-Methode getestet)
 * Danach muss der Benutzer ein passendes E eingeben
-* Die Eingabe wird in der Methode "testE" getestet, E muss die Bedingung erfüllen, dass das ggT(Φ,E) = 1 ist
+* Die Eingabe wird in der Methode `testE` getestet, E muss die Bedingung erfüllen, dass das ggT(Φ,E) = 1 ist
 * Danach wird das inverse Element von Φ und E berechnet
 * Das inverse Element wird dem Integer "d" zugeordnet
 * Benutzer muss die zu verschlüsselnde Nachricht "M" eingeben
-* Die Nachricht "M" wird durch fünf geteilt und einzeln mittels des Kpub(n,E) verschlüsselt
-* Die verschlüsselten Worte werden mittels des Kpriv(d,n) entschlüsselt
+* Die Nachricht "M" wird durch fünf geteilt und einzeln mittels des `Kpub(n,E)` verschlüsselt
+* Die verschlüsselten Worte werden mittels des `Kpriv(d,n)` entschlüsselt
 * Die Zahlenfolgen werden in Zeichenfolgen umgewandelt
 * Die Nachricht "M" ist nun wieder lesbar
 
