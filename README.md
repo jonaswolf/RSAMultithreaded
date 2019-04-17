@@ -16,10 +16,24 @@ Treffen: 10. April 2019
 ## Wie importiere ich ein GitHub Repository in IntelliJ?
 * URL des GitHub Repositories kopieren
 * IntelliJ öffnen
-* Oben links auf den Button "File"
+* Oben links auf den Button "File" klicken
 * -> New...
 * -> Object from Version Control
 * -> URL einfügen & Speicherort auswählen
+
+## Wie benutze ich Git Bash richtig, um das Projekt zu synchronisieren?
+**Voraussetzungen**: Git Bash muss installiert und eingerichtet sein
+* Lokalen Speicherort aussuchen, an dem das Projekt gespeichert werden soll
+* Rechtsklick innerhalb des Ordners
+* Klicken auf: "Git Bash Here"
+* **Bestehendes Repository an den lokalen Speicherort kopieren**:
+* `git clone URL` -> ("URL" wird durch die URL des Repositories ersetzt)
+* **Aktualisierungen auf Git hochladen**:
+* `git add FOLDER_NAME` -> ("FOLDER_NAME" wird durch den Namen des Ordners ersetzt, welcher die Aktualisierungen enthält)
+* `git commit -m "COMMIT_NAME"` -> ("COMMIT_NAME" wird ersetzt durch den Namen der Aktualisierung, bspw. "Fixed Bugs")
+* `git push origin master`
+* **Neueste Version des Repositories runterladen**:
+* `git pull`
 
 ## Wie funktioniert der RSA Algorithmus?
 * Der Benutzer muss zu Beginn zwei Primzahlen eingeben (p,q)
