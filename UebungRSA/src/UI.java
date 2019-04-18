@@ -36,7 +36,7 @@ public class UI extends JFrame {
         ((GridLayout)keyGeneratorPanel.getLayout()).setVgap(15);
         ((GridLayout)encrypt.getLayout()).setVgap(15);
 
-        JPanel keys = new JPanel(new GridLayout(0,6));
+        JPanel keys = new JPanel(new GridLayout(0,5));
         JPanel generate = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         ((GridLayout)keys.getLayout()).setHgap(15);
@@ -60,21 +60,14 @@ public class UI extends JFrame {
         dTF.setEditable(false);
         eTF.setEditable(false);
 
-        JTextField generatedPrivKey = new JTextField();
-        JTextField generatedPubKey = new JTextField();
-
-        generatedPrivKey.setEditable(false);
-        generatedPubKey.setEditable(false);
 
         keys.add(new JLabel("Private Key: "));
-        keys.add(generatedPrivKey);
         keys.add(new JLabel(" n: "));
         keys.add(n1TF);
         keys.add(new JLabel(" d: "));
         keys.add(dTF);
 
         keys.add(new JLabel("Public Key: "));
-        keys.add(generatedPubKey);
         keys.add(new JLabel(" n: "));
         keys.add(n2TF);
         keys.add(new JLabel(" e: "));
@@ -137,7 +130,7 @@ public class UI extends JFrame {
                     dTF.setText(String.valueOf(d));
                     eTF.setText(String.valueOf(e));
                     generated = true;
-                    System.out.println("KEYS GENERATED");
+                       System.out.println("KEYS GENERATED");
                 }
                 if(inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
@@ -202,6 +195,10 @@ public class UI extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+
+        //Lass den Frame in Bildschirmmitte erscheinen
+        //WICHTIG: Das hier muss nach .pack und .setVisible stehen!
+        this.setLocationRelativeTo(null);
     }
 
     public static void main(String[] args) {
