@@ -132,6 +132,10 @@ public class UI extends JFrame {
                     System.out.println(e);
                     d = RSA.getD(p,q,e);
                     System.out.println(d);
+                    n1TF.setText(String.valueOf(p.multiply(q)));
+                    n2TF.setText(String.valueOf(p.multiply(q)));
+                    dTF.setText(String.valueOf(d));
+                    eTF.setText(String.valueOf(e));
                     generated = true;
                     System.out.println("KEYS GENERATED");
                 }
@@ -167,6 +171,10 @@ public class UI extends JFrame {
                 System.out.println(e);
                 d = RSA.getD(p,q,e);
                 System.out.println(d);
+                n1TF.setText(String.valueOf(p.multiply(q)));
+                n2TF.setText(String.valueOf(p.multiply(q)));
+                dTF.setText(String.valueOf(d));
+                eTF.setText(String.valueOf(e));
                 generated = true;
                 System.out.println("KEYS GENERATED");
             }
