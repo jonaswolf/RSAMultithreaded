@@ -1,21 +1,32 @@
+import java.io.*;
 import java.math.BigInteger;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.sql.SQLOutput;
+
 public class UI extends JFrame {
 
     private String word;
     private static RSA rsa;
+    private static final String COPYKEYS_COMMAND = "copyKeys";
     private static final String GENERATE_COMMAND = "generate";
     private static final String ENCRYPT_COMMAND = "encrypt";
     private static final String DECRYPT_COMMAND = "decrypt";
+    private static final String COPYENCRYPTEDTEXT_COMMAND = "copyEncryptedText";
+    private static final String IMPORTTEXT_COMMAND = "ImportText";
+
+    File keysTxt = new File("keys.txt");
+    File encryptedTxt = new File("encrypted.txt");
+
     boolean generated = false;
     BigInteger p;
     BigInteger q;
     BigInteger e;
     BigInteger d;
+    BigInteger n;
     BigInteger[] wordsList;
 
     public UI (){
@@ -73,14 +84,25 @@ public class UI extends JFrame {
         keys.add(new JLabel(" e: "));
         keys.add(eTF);
 
+        n1TF.setAutoscrolls(true);
+        n2TF.setAutoscrolls(true);
+        eTF.setAutoscrolls(true);
+        dTF.setAutoscrolls(true);
+
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
+        JButton copyKeysBtn = new JButton("COPY KEYS");
+        generate.add(copyKeysBtn);
         generate.add(generateButton);
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
         JTextField encryptedWord = new JTextField("");
         JTextField decryptedWord = new JTextField("");
+
+        inputText.setAutoscrolls(true);
+        encryptedWord.setAutoscrolls(true);
+        decryptedWord.setAutoscrolls(true);
 
         encryptedWord.setEditable(false);
         decryptedWord.setEditable(false);
@@ -94,9 +116,13 @@ public class UI extends JFrame {
         //create & assign elements for decryptAndEnctyptButton
         JButton encryptButton = new JButton("ENCRYPT");
         JButton decryptButton = new JButton("DECRYPT");
+        JButton copyEncryWordBtn = new JButton("COPY");
+        JButton importDecryptWord = new JButton("IMPORT");
 
+        decryptAndEncryptButtonPanel.add(copyEncryWordBtn);
         decryptAndEncryptButtonPanel.add(encryptButton);
         decryptAndEncryptButtonPanel.add(decryptButton);
+        decryptAndEncryptButtonPanel.add(importDecryptWord);
 
         // create & assign Borders
         Border etchedBorder = BorderFactory.createEtchedBorder();
@@ -112,7 +138,9 @@ public class UI extends JFrame {
         encryptButton.setActionCommand(ENCRYPT_COMMAND);
         decryptButton.setActionCommand(DECRYPT_COMMAND);
         generateButton.setActionCommand(GENERATE_COMMAND);
-
+        copyKeysBtn.setActionCommand(COPYKEYS_COMMAND);
+        copyEncryWordBtn.setActionCommand(COPYENCRYPTEDTEXT_COMMAND);
+        importDecryptWord.setActionCommand(IMPORTTEXT_COMMAND);
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
@@ -125,12 +153,8 @@ public class UI extends JFrame {
                     System.out.println(e);
                     d = RSA.getD(p,q,e);
                     System.out.println(d);
-                    n1TF.setText(String.valueOf(p.multiply(q)));
-                    n2TF.setText(String.valueOf(p.multiply(q)));
-                    dTF.setText(String.valueOf(d));
-                    eTF.setText(String.valueOf(e));
                     generated = true;
-                       System.out.println("KEYS GENERATED");
+                    System.out.println("KEYS GENERATED");
                 }
                 if(inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
@@ -157,25 +181,77 @@ public class UI extends JFrame {
 
             }else if (a.getActionCommand().equals(GENERATE_COMMAND)){
                 p = RSA.getPrime();
-                System.out.println(p);
+                System.out.println("p: " + p);
                 q = RSA.getPrime();
-                System.out.println(q);
+                System.out.println("q: " + q);
+                n = p.multiply(q);
+                n1TF.setText(n + " ");
+                n2TF.setText(n + " ");
                 e = RSA.getE(p,q);
-                System.out.println(e);
+                eTF.setText(" " + e);
+                System.out.println("e: " + e);
                 d = RSA.getD(p,q,e);
-                System.out.println(d);
-                n1TF.setText(String.valueOf(p.multiply(q)));
-                n2TF.setText(String.valueOf(p.multiply(q)));
-                dTF.setText(String.valueOf(d));
-                eTF.setText(String.valueOf(e));
+                dTF.setText(" " + d);
+                System.out.println("d: " + d);
                 generated = true;
                 System.out.println("KEYS GENERATED");
+            } else if(a.getActionCommand().equals(COPYKEYS_COMMAND)){
+                if(n1TF.getText()== null){
+                    System.out.println("NO KEYS TO BE COPIED");
+                }else {
+                    if (!keysTxt.exists()) {
+                        try {
+                            keysTxt.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    try (FileWriter myFileWriter = new FileWriter(keysTxt, false)) {
+                        myFileWriter.write("n: " + n + "\n");
+                        myFileWriter.write("e: " + e + "\n");
+                        myFileWriter.write("d: " + d + "\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("KEYS COPIED");
+                }
+            }else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
+
+                if(!encryptedTxt.exists()){
+                    try{
+                        encryptedTxt.createNewFile();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+                try(FileWriter myFileWriter = new FileWriter(encryptedTxt, false)){
+                    myFileWriter.write("Encrypted Text: \n" + encryptedWord.getText());
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                System.out.println("ENCRYPTED WORD COPIED");
+            }else if (a.getActionCommand().equals(IMPORTTEXT_COMMAND)){
+                try (FileReader myFileReader = new FileReader(encryptedTxt); BufferedReader myLineReader = new BufferedReader(myFileReader)){
+                    String line;
+                    while((line = myLineReader.readLine()) != null){
+                        System.out.println(line);
+                        encryptedWord.setText(line);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("TEXT IMPORTED");
             }
         };
 
         encryptButton.addActionListener(buttonlistener);
         decryptButton.addActionListener(buttonlistener);
         generateButton.addActionListener(buttonlistener);
+        copyKeysBtn.addActionListener(buttonlistener);
+        copyEncryWordBtn.addActionListener(buttonlistener);
+        importDecryptWord.addActionListener(buttonlistener);
 
         // combine Panels
         keyGeneratorPanel.add(keys);
@@ -195,10 +271,6 @@ public class UI extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
-
-        //Lass den Frame in Bildschirmmitte erscheinen
-        //WICHTIG: Das hier muss nach .pack und .setVisible stehen!
-        this.setLocationRelativeTo(null);
     }
 
     public static void main(String[] args) {
