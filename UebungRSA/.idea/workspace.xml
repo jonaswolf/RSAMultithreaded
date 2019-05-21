@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef93610e-4569-4012-80d8-db9ecf8544b0" name="Default Changelist" comment="Einführung von 4096Bit Verschlüsselung">
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/RSA$Berechnungen.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/RSA$Berechnungen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/RSA$Euklid.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/RSA$Euklid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/RSA.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/RSA.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/SimpleMaths$Mathe.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/SimpleMaths$Mathe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/SimpleMaths.class" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/SimpleMaths.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/extendedEuklid$Euklid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/out/production/RSA_Functional_Project/extendedEuklid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RSA_Functional_Project/src/RSA.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RSA_Functional_Project/src/RSA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UebungRSA/META-INF/UebungRSA.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UebungRSA/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UebungRSA/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encrypted.txt" beforeDir="false" afterPath="$PROJECT_DIR$/encrypted.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys.txt" beforeDir="false" afterPath="$PROJECT_DIR$/keys.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,9 +19,9 @@
     <session id="1389540101">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -54,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/src/UI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,7 +124,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -153,14 +141,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558425615663" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558425982162" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -250,6 +238,7 @@
       <workItem from="1555189222661" duration="1262000" />
       <workItem from="1555253086496" duration="1724000" />
       <workItem from="1558425478985" duration="140000" />
+      <workItem from="1558425766611" duration="221000" />
     </task>
     <task id="LOCAL-00001" summary="Säuberung des Codes und Ergänzung von Kommentaren">
       <created>1555086002774</created>
@@ -276,12 +265,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75890000" />
+    <option name="totallyTimeSpent" value="76111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20788912" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21002132" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -359,7 +348,7 @@
     <entry file="file://$PROJECT_DIR$/src/UI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
