@@ -18,7 +18,8 @@ public class UI extends JFrame {
     private static final String COPYENCRYPTEDTEXT_COMMAND = "copyEncryptedText";
     private static final String IMPORTTEXT_COMMAND = "ImportText";
 
-    File keysTxt = new File("keys.txt");
+    File PublicKeyTxt = new File("PublicKey.txt");
+    File PrivateKeyTxt = new File ("PrivateKey.txt");
     File encryptedTxt = new File("encrypted.txt");
 
     boolean generated = false;
@@ -199,20 +200,28 @@ public class UI extends JFrame {
                 if(!generated){
                     System.out.println("NO KEYS TO BE COPIED");
                 }else {
-                    if (!keysTxt.exists()) {
+                    if (!PublicKeyTxt.exists() || !PrivateKeyTxt.exists()) {
                         try {
-                            keysTxt.createNewFile();
+                            PublicKeyTxt.createNewFile();
+                            PrivateKeyTxt.createNewFile();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                    try (FileWriter myFileWriter = new FileWriter(keysTxt, false)) {
+                    try (FileWriter myFileWriter = new FileWriter(PublicKeyTxt, false)) {
                         myFileWriter.write("n: " + n + "\n");
                         myFileWriter.write("e: " + e + "\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    try (FileWriter myFileWriter = new FileWriter(PrivateKeyTxt, false)) {
+                        myFileWriter.write("n: " + n + "\n");
                         myFileWriter.write("d: " + d + "\n");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                     System.out.println("KEYS COPIED");
                 }
             }else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
