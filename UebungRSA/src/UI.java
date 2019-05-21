@@ -196,7 +196,7 @@ public class UI extends JFrame {
                 generated = true;
                 System.out.println("KEYS GENERATED");
             } else if(a.getActionCommand().equals(COPYKEYS_COMMAND)){
-                if(n1TF.getText()== null){
+                if(!generated){
                     System.out.println("NO KEYS TO BE COPIED");
                 }else {
                     if (!keysTxt.exists()) {
