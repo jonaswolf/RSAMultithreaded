@@ -232,7 +232,8 @@ public class UI extends JFrame {
                     }
 
                     System.out.println("KEYS COPIED");
-                    System.out.println(keyfilename.getText());
+                    System.out.println("Public Key: " + keyfilename.getText() + ".pub");
+                    System.out.println("Secret Key: " + keyfilename.getText() + ".key");
                 }}
             }else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
 
