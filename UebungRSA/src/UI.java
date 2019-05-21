@@ -154,7 +154,7 @@ public class UI extends JFrame {
                     d = RSA.getD(p,q,e);
                     System.out.println(d);
                     generated = true;
-                    System.out.println("KEYS GENERATED");
+                       System.out.println("KEYS GENERATED");
                 }
                 if(inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(),p,q,e);
@@ -231,6 +231,8 @@ public class UI extends JFrame {
                 }
                 System.out.println("ENCRYPTED WORD COPIED");
             }else if (a.getActionCommand().equals(IMPORTTEXT_COMMAND)){
+                inputText.setText(" ");
+                decryptedWord.setText(" ");
                 try (FileReader myFileReader = new FileReader(encryptedTxt); BufferedReader myLineReader = new BufferedReader(myFileReader)){
                     String line;
                     while((line = myLineReader.readLine()) != null){

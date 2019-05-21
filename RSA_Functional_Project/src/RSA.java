@@ -8,6 +8,8 @@ public class RSA {
 
     public static void main(String[] args) {
 
+      // Generieren der Primzahlen
+
         System.out.println("Bitte geben Sie die erste Primzahl ein.");
         int prime = sc.nextInt();
         while (!isPrime(prime)){
