@@ -18,8 +18,6 @@ public class UI extends JFrame {
     private static final String COPYENCRYPTEDTEXT_COMMAND = "copyEncryptedText";
     private static final String IMPORTTEXT_COMMAND = "ImportText";
 
-    File PublicKeyTxt = new File("PublicKey.txt");
-    File PrivateKeyTxt = new File ("PrivateKey.txt");
     File encryptedTxt = new File("encrypted.txt");
 
     boolean generated = false;
@@ -66,6 +64,7 @@ public class UI extends JFrame {
         JTextField n2TF = new JTextField();
         JTextField dTF = new JTextField();
         JTextField eTF = new JTextField();
+        JTextField keyfilename = new JTextField("Keyfile");
 
         n1TF.setEditable(false);
         n2TF.setEditable(false);
@@ -85,10 +84,14 @@ public class UI extends JFrame {
         keys.add(new JLabel(" e: "));
         keys.add(eTF);
 
+        keys.add(new JLabel("Filename for Export:"));
+        keys.add(keyfilename);
+
         n1TF.setAutoscrolls(true);
         n2TF.setAutoscrolls(true);
         eTF.setAutoscrolls(true);
         dTF.setAutoscrolls(true);
+        keyfilename.setAutoscrolls(true);
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
@@ -199,7 +202,13 @@ public class UI extends JFrame {
             } else if(a.getActionCommand().equals(COPYKEYS_COMMAND)){
                 if(!generated){
                     System.out.println("NO KEYS TO BE COPIED");
-                }else {
+                }else{
+                if(keyfilename.getText() == ""){
+                    System.out.println("PLEASE CHOOSE A SPECIFIC FILENAME");
+                    }else{
+                    String filename = keyfilename.getText();
+                    File PublicKeyTxt = new File(filename + ".pub");
+                    File PrivateKeyTxt = new File (filename + ".key");
                     if (!PublicKeyTxt.exists() || !PrivateKeyTxt.exists()) {
                         try {
                             PublicKeyTxt.createNewFile();
@@ -223,7 +232,8 @@ public class UI extends JFrame {
                     }
 
                     System.out.println("KEYS COPIED");
-                }
+                    System.out.println(keyfilename.getText());
+                }}
             }else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
 
                 if(!encryptedTxt.exists()){
