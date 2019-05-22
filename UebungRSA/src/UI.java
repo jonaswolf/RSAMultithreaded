@@ -27,6 +27,7 @@ public class UI extends JFrame {
     BigInteger d;
     BigInteger n;
     BigInteger[] wordsList;
+    BigInteger[] decryptedWordsList;
 
     public UI (){
 
@@ -186,10 +187,10 @@ public class UI extends JFrame {
                     System.out.println("YOU CAN NOT DECRYPT WITHOUT KEY");
                 }
                 if(encryptedWord.getText().length()>4){
-                    wordsList = RSA.decry(encryptedWord.getText(),n, d);
+                    decryptedWordsList = RSA.decry(encryptedWord.getText(),n, d);
                     String result = ("");
-                    for(int i = 0;i<wordsList.length;i++){
-                        result = result+(wordsList[i].toString())+" ";
+                    for(int i = 0;i<decryptedWordsList.length;i++){
+                        result = result+(decryptedWordsList[i].toString())+" ";
                     }
                     decryptedWord.setText(result);
                 }
