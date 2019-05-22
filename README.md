@@ -73,7 +73,7 @@ Treffen: 10. April 2019
 * [ ] Entschlüsseln
 * [x] Parallelisieren
 * [x] Randomizer Methode
-* [ ] User Interface
+* [X] User Interface
 * [ ] Verschlüsselte Nachricht so abspeichern (.txt), dass man sie auf einem anderen PC entschlüsseln kann
 * [ ] dazu: Verschlüsselten Code als .txt abspeichern (mit d, N)
 * [ ] dazu: Import und Entschlüsselung der Daten aus der .txt Datei
