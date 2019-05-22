@@ -20,7 +20,10 @@ public class TestClass {
     System.out.println("Ermittlung e");
     BigInteger e = RSA.getE(p, q);
     System.out.println("E ermittelt");
+    System.out.println("Ermittlung n");
+    BigInteger n = RSA.getN(p, q);
+    System.out.println("N ermittelt");
     System.out.println("Start Verschlüsselung");
-    BigInteger[] verschluesselt = RSA.encry(text, p, q, e);
+    BigInteger[] verschluesselt = RSA.encry(text, n, e);
   }
 }

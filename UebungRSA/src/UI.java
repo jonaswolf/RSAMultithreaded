@@ -157,11 +157,13 @@ public class UI extends JFrame {
                     System.out.println(e);
                     d = RSA.getD(p,q,e);
                     System.out.println(d);
+                    n = RSA.getN(p,q);
+                    System.out.println(n);
                     generated = true;
                        System.out.println("KEYS GENERATED");
                 }
                 if(inputText.getText().length()>4){
-                    wordsList = RSA.encry(inputText.getText(),p,q,e);
+                    wordsList = RSA.encry(inputText.getText(), n, e);
                     String result = ("");
                     for(int i = 0;i<wordsList.length;i++){
                         result = result+(wordsList[i].toString())+" ";
@@ -173,22 +175,37 @@ public class UI extends JFrame {
                     inputText.setText("Gib was ein das sich lohnt zu verschlüsseln");
                 }
                 System.out.println("ENCRYPT");
+                //System.out.println(encryptedWord.getText());
                 word = inputText.getText();
                 inputText.setText("");
                 System.out.println(word);
                 decryptedWord.setText("");
 
             } else if (a.getActionCommand().equals(DECRYPT_COMMAND)) {
+                if(!generated){
+                    System.out.println("YOU CAN NOT DECRYPT WITHOUT KEY");
+                }
+                if(encryptedWord.getText().length()>4){
+                    wordsList = RSA.decry(encryptedWord.getText(),n, d);
+                    String result = ("");
+                    for(int i = 0;i<wordsList.length;i++){
+                        result = result+(wordsList[i].toString())+" ";
+                    }
+                    decryptedWord.setText(result);
+                }
+                else if(inputText.getText().length()==0){ }
+                else {
+                    inputText.setText("Gib was ein das sich lohnt zu entschlüsseln");
+                }
                 System.out.println("DECRYPT");
-                decryptedWord.setText("THIS WORD HAS BEEN DECRYPTED");
+                System.out.println(decryptedWord.getText());
                 encryptedWord.setText("");
-
             }else if (a.getActionCommand().equals(GENERATE_COMMAND)){
                 p = RSA.getPrime();
                 System.out.println("p: " + p);
                 q = RSA.getPrime();
                 System.out.println("q: " + q);
-                n = p.multiply(q);
+                n = RSA.getN(p,q);
                 n1TF.setText(n + " ");
                 n2TF.setText(n + " ");
                 e = RSA.getE(p,q);

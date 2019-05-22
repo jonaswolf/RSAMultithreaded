@@ -16,12 +16,10 @@ public class RSA {
    * @return
    * Ein Array an verschlüsselten Teilsequenzen im BigInteger Format
    */
-  public static BigInteger[] encry(String word, BigInteger p,BigInteger q, BigInteger e){
+  public static BigInteger[] encry(String word, BigInteger n, BigInteger e){
     if(word.equals("")){
       return new BigInteger[0];
     }
-    //Berechnung von n
-    BigInteger n = p.multiply(q);
     //Bestimmung der relativen Größe der Zeichen Gruppe.
     int threadAnz = 4;
     //Vorbereitung eines BigInt Arrays
@@ -53,6 +51,42 @@ public class RSA {
     return wordsBigInt;
   }
 
+  public static BigInteger[] decry(String encryped, BigInteger n, BigInteger d){
+    if(encryped.equals("")){
+      return new BigInteger[0];
+    }
+    //Bestimmung der relativen Größe der Zeichen Gruppe.
+    int threadAnz = 4;
+    //Vorbereitung eines BigInt Arrays
+    String[] encryptedWords = new String[threadAnz+1];
+    int teilLaenge = (encryped.length()-(encryped.length()%threadAnz))/threadAnz;
+    BigInteger[] encryptedWordsBigInt = new BigInteger[threadAnz+1];
+    encryptedWordsBigInt[threadAnz] = BigInteger.valueOf(0);
+    String cacheWord = "";
+    for(int i = 0;i<threadAnz;i++){
+      for(int o = 0;o<teilLaenge;o++){
+        int buchstabe = ((int)encryped.charAt((teilLaenge*i)+o))+100;
+        cacheWord = cacheWord+buchstabe;
+      }
+      encryptedWordsBigInt[i] = new BigInteger(cacheWord);
+      cacheWord = "";
+    }
+    for(int i = 0;i<encryped.length()%threadAnz;i++){
+      int buchstabe = ((int)encryped.charAt((teilLaenge*threadAnz)+i))+100;
+      cacheWord = cacheWord+buchstabe;
+      encryptedWordsBigInt[i] = new BigInteger(cacheWord);
+    }
+    //Funktionale Verschlüsselung der einzelnen Array Elemente
+    encryptedWordsBigInt =
+        Arrays
+            .stream(encryptedWordsBigInt)
+            .parallel()
+            .map(x -> x.modPow(d,n))
+            .toArray(BigInteger[]::new);
+    return encryptedWordsBigInt;
+  }
+
+
   public static BigInteger getPrime(){
     return BigInteger.probablePrime(4096,new Random());
   }
@@ -68,6 +102,12 @@ public class RSA {
       e = e.add(new BigInteger("1"));
     }while (!testE(p,q,e));
     return e;
+  }
+
+  //Methode um n zu berechnen, Arthur, Dennis, Jonas
+  public static BigInteger getN(BigInteger p, BigInteger q){
+    BigInteger n = p.multiply(q);
+    return n;
   }
 
   //Methode um zu prüfen ob e passend ist. von Arthur & Dennis
