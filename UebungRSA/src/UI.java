@@ -1,8 +1,11 @@
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.math.BigInteger;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.sql.SQLOutput;
@@ -11,12 +14,14 @@ public class UI extends JFrame {
 
     private String word;
     private static RSA rsa;
-    private static final String COPYKEYS_COMMAND = "copyKeys";
     private static final String GENERATE_COMMAND = "generate";
     private static final String ENCRYPT_COMMAND = "encrypt";
     private static final String DECRYPT_COMMAND = "decrypt";
     private static final String COPYENCRYPTEDTEXT_COMMAND = "copyEncryptedText";
     private static final String IMPORTTEXT_COMMAND = "ImportText";
+    private static final String EXPORTPRIV_COMMAND = "exportPriv";
+    private static final String EXPORTPUB_COMMAND = "exportPub";
+    private JFileChooser fc;
 
     File encryptedTxt = new File("encrypted.txt");
 
@@ -96,12 +101,21 @@ public class UI extends JFrame {
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
-        JButton copyKeysBtn = new JButton("COPY KEYS");
-        generate.add(copyKeysBtn);
+        JButton exportPriv = new JButton("Export PrivateKey");
+        JButton exportPub = new JButton("Export PublicKey");
         generate.add(generateButton);
+        generate.add(exportPriv);
+        generate.add(exportPub);
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
+        //If user clicks on the textfield, hint will disappear
+        inputText.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                inputText.setText("");
+            }
+        });
         JTextField encryptedWord = new JTextField("");
         JTextField decryptedWord = new JTextField("");
 
@@ -143,9 +157,10 @@ public class UI extends JFrame {
         encryptButton.setActionCommand(ENCRYPT_COMMAND);
         decryptButton.setActionCommand(DECRYPT_COMMAND);
         generateButton.setActionCommand(GENERATE_COMMAND);
-        copyKeysBtn.setActionCommand(COPYKEYS_COMMAND);
         copyEncryWordBtn.setActionCommand(COPYENCRYPTEDTEXT_COMMAND);
         importDecryptWord.setActionCommand(IMPORTTEXT_COMMAND);
+        exportPriv.setActionCommand(EXPORTPRIV_COMMAND);
+        exportPub.setActionCommand(EXPORTPUB_COMMAND);
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
@@ -196,7 +211,7 @@ public class UI extends JFrame {
                 }
                 else if(inputText.getText().length()==0){ }
                 else {
-                    inputText.setText("Gib was ein das sich lohnt zu entschlüsseln");
+                    inputText.setText("TYPE IN SOMETHING THATS WORTH DECRYPTING.");
                 }
                 System.out.println("DECRYPT");
                 System.out.println(decryptedWord.getText());
@@ -217,43 +232,97 @@ public class UI extends JFrame {
                 System.out.println("d: " + d);
                 generated = true;
                 System.out.println("KEYS GENERATED");
-            } else if(a.getActionCommand().equals(COPYKEYS_COMMAND)){
-                if(!generated){
-                    System.out.println("NO KEYS TO BE COPIED");
-                }else{
-                if(keyfilename.getText() == ""){
-                    System.out.println("PLEASE CHOOSE A SPECIFIC FILENAME");
-                    }else{
-                    String filename = keyfilename.getText();
-                    File PublicKeyTxt = new File(filename + ".pub");
-                    File PrivateKeyTxt = new File (filename + ".key");
-                    if (!PublicKeyTxt.exists() || !PrivateKeyTxt.exists()) {
-                        try {
-                            PublicKeyTxt.createNewFile();
-                            PrivateKeyTxt.createNewFile();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+            } else if(a.getActionCommand().equals(EXPORTPRIV_COMMAND)) { // von Dennis
+                if(!generated) {
+                    System.out.println("NO KEYS TO EXPORT.");
+                } else {
+                    //FileChooser erstellen
+                    fc = new JFileChooser();
+
+                    //Erlaube nur TextFiles
+                    fc.setAcceptAllFileFilterUsed(false);
+                    FileNameExtensionFilter filter = new FileNameExtensionFilter("TextFiles", "txt", "text");
+                    fc.setFileFilter(filter);
+
+                    int returnVal = fc.showSaveDialog(UI.this);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        //Datei speichern und beschriften
+                        System.out.println("Saving PrivateKey-TextFile: " + file.getName() + " to " + file.getAbsolutePath());
+                        String filename = fc.getSelectedFile().getName();
+                        //Prüfen, ob Dateiendung bereits mit angegeben wurde
+                        final String EXTENSION = ".txt";
+                        String filepath = fc.getSelectedFile().toString();
+                        if(!filename.endsWith(EXTENSION)) {
+                            filename = filepath + EXTENSION;
+                        } else {
+                            filename = filepath;
                         }
+                        //String filepath = fc.getSelectedFile().toString();
+                        File newFile = new File(/*filepath, */ filename);
+                        if(!newFile.exists()) {
+                            try {
+                                newFile.createNewFile();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        try (FileWriter myFileWriter = new FileWriter(newFile)) {
+                            myFileWriter.write("n: " + n + System.getProperty("line.separator"));
+                            myFileWriter.write("d: " + d);
+                        } catch (IOException ioe3) {
+                            ioe3.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Save command cancelled by user.");
                     }
-                    try (FileWriter myFileWriter = new FileWriter(PublicKeyTxt, false)) {
-                        myFileWriter.write("n: " + n + "\n");
-                        myFileWriter.write("e: " + e + "\n");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                }
+            } else if(a.getActionCommand().equals(EXPORTPUB_COMMAND)) { //von Dennis
+                if(!generated) {
+                    System.out.println("NO KEYS TO EXPORT.");
+                } else {
+                    //FileChooser erstellen
+                    fc = new JFileChooser();
 
-                    try (FileWriter myFileWriter = new FileWriter(PrivateKeyTxt, false)) {
-                        myFileWriter.write("n: " + n + "\n");
-                        myFileWriter.write("d: " + d + "\n");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    //Erlaube nur TextFiles
+                    fc.setAcceptAllFileFilterUsed(false);
+                    FileNameExtensionFilter filter = new FileNameExtensionFilter("TextFiles", "txt", "text");
+                    fc.setFileFilter(filter);
 
-                    System.out.println("KEYS COPIED");
-                    System.out.println("Public Key: " + keyfilename.getText() + ".pub");
-                    System.out.println("Secret Key: " + keyfilename.getText() + ".key");
-                }}
-            }else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
+                    int returnVal = fc.showSaveDialog(UI.this);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        //Datei speichern und beschriften
+                        System.out.println("Saving PublicKey-TextFile: " + file.getName() + " to " + file.getAbsolutePath());
+                        String filename = fc.getSelectedFile().getName();
+                        //Prüfen, ob Dateiendung bereits mit angegeben wurde
+                        final String EXTENSION = ".txt";
+                        String filepath = fc.getSelectedFile().toString();
+                        if(!filename.endsWith(EXTENSION)) {
+                            filename = filepath + EXTENSION;
+                        } else {
+                            filename = filepath;
+                        }
+                        //String filepath = fc.getSelectedFile().toString();
+                        File newFile = new File(/*filepath, */ filename);
+                        if(!newFile.exists()) {
+                            try {
+                                newFile.createNewFile();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        try (FileWriter myFileWriter = new FileWriter(newFile)) {
+                            myFileWriter.write("n: " + n + System.getProperty("line.separator"));
+                            myFileWriter.write("e: " + e);
+                        } catch (IOException ioe3) {
+                            ioe3.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Save command cancelled by user.");
+                    }
+                }
+            } else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
 
                 if(!encryptedTxt.exists()){
                     try{
@@ -289,9 +358,10 @@ public class UI extends JFrame {
         encryptButton.addActionListener(buttonlistener);
         decryptButton.addActionListener(buttonlistener);
         generateButton.addActionListener(buttonlistener);
-        copyKeysBtn.addActionListener(buttonlistener);
         copyEncryWordBtn.addActionListener(buttonlistener);
         importDecryptWord.addActionListener(buttonlistener);
+        exportPriv.addActionListener(buttonlistener);
+        exportPub.addActionListener(buttonlistener);
 
         // combine Panels
         keyGeneratorPanel.add(keys);

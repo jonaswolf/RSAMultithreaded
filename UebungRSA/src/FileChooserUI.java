@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
 
+//Von Dennis
 public class FileChooserUI extends JPanel implements ActionListener {
 
   //newline für den Zeilenwechsel
@@ -58,7 +59,7 @@ public class FileChooserUI extends JPanel implements ActionListener {
       if (returnVal == JFileChooser.APPROVE_OPTION) {
         File file = fc.getSelectedFile();
         //Datei öffnen und auslesen
-        log.append("Opening: " + file.getName() + "." + newline);
+        System.out.println("Opening: " + file.getName());
         try(FileReader myFileReader = new FileReader(file); BufferedReader myLineReader = new BufferedReader(myFileReader)) {
           String line;
           while((line = myLineReader.readLine()) != null) {
@@ -70,7 +71,7 @@ public class FileChooserUI extends JPanel implements ActionListener {
           ioe.printStackTrace();
         }
       } else {
-        log.append("Open command cancelled by user." + newline);
+        System.out.println("Open command cancelled by user.");
       }
       log.setCaretPosition(log.getDocument().getLength());
 
@@ -80,7 +81,7 @@ public class FileChooserUI extends JPanel implements ActionListener {
       if (returnVal == JFileChooser.APPROVE_OPTION) {
         File file = fc.getSelectedFile();
         //Datei speichern und beschriften
-        log.append("Saving TextFile: " + file.getName() + newline);
+        System.out.println("Saving TextFile: " + file.getName());
         String filename = fc.getSelectedFile().getName();
         //Prüfen, ob Dateiendung bereits mit angegeben wurde
         final String EXTENSION = ".txt";
@@ -104,7 +105,7 @@ public class FileChooserUI extends JPanel implements ActionListener {
           ioe3.printStackTrace();
         }
       } else {
-        log.append("Save command cancelled by user." + newline);
+        System.out.println("Save command cancelled by user.");
       }
       log.setCaretPosition(log.getDocument().getLength());
     }
