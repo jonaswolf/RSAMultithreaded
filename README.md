@@ -1,6 +1,4 @@
-# Gruppe
-
-## Gruppe 1
+# Gruppe 1
 
 ## Teammember
 * Dennis Neumann
