@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef93610e-4569-4012-80d8-db9ecf8544b0" name="Default Changelist" comment="Einführung von 4096Bit Verschlüsselung">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UebungRSA/FileChooserUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UebungRSA/FileChooserUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UebungRSA/TestNumbers.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/UebungRSA/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/UebungRSA/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileChooserUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileChooserUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
-    </list>
+    <list default="true" id="ef93610e-4569-4012-80d8-db9ecf8544b0" name="Default Changelist" comment="Einführung von 4096Bit Verschlüsselung" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,6 +142,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,7 +160,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,6 +276,7 @@
       <workItem from="1558544191236" duration="26000" />
       <workItem from="1558566184566" duration="7138000" />
       <workItem from="1558574422860" duration="15000" />
+      <workItem from="1558574639909" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="Säuberung des Codes und Ergänzung von Kommentaren">
       <created>1555086002774</created>
@@ -310,13 +303,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109816000" />
+    <option name="totallyTimeSpent" value="109826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49497208" visible="true" weight="0.23361976" />
-      <window_info id="Structure" order="1" sideWeight="0.50502795" side_tool="true" visible="true" weight="0.23361976" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49385476" visible="true" weight="0.23684211" />
+      <window_info id="Structure" order="1" sideWeight="0.50614524" side_tool="true" visible="true" weight="0.23684211" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
