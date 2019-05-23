@@ -1,8 +1,37 @@
-Gruppe 1
+#Gruppe
+##Gruppe 1
+##Teammember
+
+* Dennis Neumann
+* Arthur Siebert
+* Julie Pines
+* Mahmoud Almahdi
+* Soufian Elouafi
+* Jonas Wolf
+
+##Grobe Aufgabenaufteilung
+
+* Planung, Struktur, Leading: Arthur
+* UserInterface: Julie
+* Import/Export: Dennis, Julie
+* Generieren: Arthur, Dennis, Jonas
+* Verschlüßeln: Arthur, Dennis
+* Entschlüßeln: Arthur, Jonas
+* Diverses: Mahmoud, Soufian
+
+##Für die Zukunft
+
+* Entschlüsseln formt derzeit noch nicht die Zahlen zurück in Code um #FIXME
+* Kleinere Änderungen an der UI
+* Primzahlen lassen sich derzeit nicht 100% sicher bestimmen
+
+##Zeitlicher Ablauf
 
 Start: 04. April 2019
 
 Treffen: 10. April 2019
+
+TelKos: Julie, Arthur, Dennis, Jonas am 21.05, 23.05. --> besprechen der Ergebniße und des aktuellen Stands
 
 # **RSA_SEI_multithreaded**
 
@@ -70,7 +99,7 @@ Treffen: 10. April 2019
 * [x] E, N testen
 * [x] ggT und Inverses Element berechnen
 * [x] Verschlüsseln
-* [ ] Entschlüsseln
+* [x] Entschlüsseln
 * [x] Parallelisieren
 * [x] Randomizer Methode
 * [X] User Interface
@@ -78,6 +107,9 @@ Treffen: 10. April 2019
 * [ ] dazu: Verschlüsselten Code als .txt abspeichern (mit d, N)
 * [ ] dazu: Import und Entschlüsselung der Daten aus der .txt Datei
 * [ ] Neben Verschlüsselungstextfeld: "Copy to Clipboard" - Button
+* [ ] Entschlüsseln formt derzeit noch nicht die Zahlen zurück in Code um #FIXME
+* [ ] Kleinere Änderungen an der UI
+* [ ] Primzahlen lassen sich derzeit nicht 100% sicher bestimmen
 * [ ] Zusammenführung aller Teilaufgaben
 
 **Hinweis**: Alle Berechnungen o. Ä. funktional, nicht objektorientiert
