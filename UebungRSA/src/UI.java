@@ -138,6 +138,10 @@ public class UI extends JFrame {
         encryptedWord.setEditable(false);
         decryptedWord.setEditable(false);
 
+        Dimension wordDimension = new Dimension(300, 20);
+
+        encryptedWord.setPreferredSize(wordDimension);
+        decryptedWord.setPreferredSize(wordDimension);
 
 
         inputAndOutput.add(inputText);
