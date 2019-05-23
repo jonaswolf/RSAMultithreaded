@@ -8,7 +8,7 @@
 * Soufian Elouafi
 * Jonas Wolf
 
-##Grobe Aufgabenaufteilung
+## Grobe Aufgabenaufteilung
 * Planung, Struktur, Leading: Arthur
 * UserInterface: Julie
 * Import/Export: Dennis, Julie
