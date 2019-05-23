@@ -12,6 +12,9 @@ public class RSA {
    * @return
    * Ein Array an verschlüsselten Teilsequenzen im BigInteger Format
    */
+
+
+
   public static BigInteger[] encry(String word, BigInteger n, BigInteger e){
     if(word.equals("")){
       return new BigInteger[0];

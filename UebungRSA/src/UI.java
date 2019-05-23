@@ -25,12 +25,18 @@ public class UI extends JFrame {
 
     File encryptedTxt = new File("encrypted.txt");
 
-    boolean generated = false;
+
     BigInteger p;
     BigInteger q;
     BigInteger e;
     BigInteger d;
     BigInteger n;
+    JTextField n1TF;
+    JTextField n2TF;
+    JTextField dTF;
+    JTextField eTF;
+
+    boolean generated = false;
     BigInteger[] wordsList;
     BigInteger[] decryptedWordsList;
 
@@ -64,12 +70,12 @@ public class UI extends JFrame {
         ((GridLayout)inputAndOutput.getLayout()).setVgap(10);
         ((GridLayout)inputAndOutput.getLayout()).setHgap(15);
 
-        //create & assign elements for keys area
+        //assign elements for keys area
 
-        JTextField n1TF = new JTextField();
-        JTextField n2TF = new JTextField();
-        JTextField dTF = new JTextField();
-        JTextField eTF = new JTextField();
+        n1TF = new JTextField();
+        n2TF = new JTextField();
+        dTF = new JTextField();
+        eTF = new JTextField();
         JTextField keyfilename = new JTextField("Keyfile");
 
         n1TF.setEditable(false);
@@ -162,21 +168,13 @@ public class UI extends JFrame {
         exportPriv.setActionCommand(EXPORTPRIV_COMMAND);
         exportPub.setActionCommand(EXPORTPUB_COMMAND);
 
+
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
                 if(!generated){
-                    p = RSA.getPrime();
-                    System.out.println(p);
-                    q = RSA.getPrime();
-                    System.out.println(q);
-                    e = RSA.getE(p,q);
-                    System.out.println(e);
-                    d = RSA.getD(p,q,e);
-                    System.out.println(d);
-                    n = RSA.getN(p,q);
-                    System.out.println(n);
-                    generated = true;
-                       System.out.println("KEYS GENERATED");
+                    //System.out.println("NO KEY, PLEASE GENERATE");
+                    //entweder generieren, oder Ausgabe dass kein Schlüssel generiert ist.
+                    generateKeys();
                 }
                 if(inputText.getText().length()>4){
                     wordsList = RSA.encry(inputText.getText(), n, e);
@@ -213,25 +211,12 @@ public class UI extends JFrame {
                 System.out.println(decryptedWord.getText());
                 encryptedWord.setText("");
             }else if (a.getActionCommand().equals(GENERATE_COMMAND)){
-                p = RSA.getPrime();
-                System.out.println("p: " + p);
-                q = RSA.getPrime();
-                System.out.println("q: " + q);
-                n = RSA.getN(p,q);
-                n1TF.setText(n + " ");
-                n2TF.setText(n + " ");
-                e = RSA.getE(p,q);
-                eTF.setText(" " + e);
-                System.out.println("e: " + e);
-                d = RSA.getD(p,q,e);
-                dTF.setText(" " + d);
-                System.out.println("d: " + d);
-                generated = true;
-                System.out.println("KEYS GENERATED");
+                generateKeys();
             } else if(a.getActionCommand().equals(EXPORTPRIV_COMMAND)) { // von Dennis
                 if(!generated) {
-                    System.out.println("NO KEYS TO EXPORT.");
-                } else {
+                    //System.out.println("NO KEYS TO EXPORT.");
+                    //entweder generieren, oder Ausgabe dass kein Schlüssel generiert ist.
+                    generateKeys();}
                     //FileChooser erstellen
                     fc = new JFileChooser();
 
@@ -272,11 +257,11 @@ public class UI extends JFrame {
                     } else {
                         System.out.println("Save command cancelled by user.");
                     }
-                }
             } else if(a.getActionCommand().equals(EXPORTPUB_COMMAND)) { //von Dennis
                 if(!generated) {
-                    System.out.println("NO KEYS TO EXPORT.");
-                } else {
+                    //System.out.println("NO KEYS TO EXPORT.");
+                    //entweder generieren, oder Ausgabe dass kein Schlüssel generiert ist.
+                    generateKeys(); }
                     //FileChooser erstellen
                     fc = new JFileChooser();
 
@@ -317,7 +302,6 @@ public class UI extends JFrame {
                     } else {
                         System.out.println("Save command cancelled by user.");
                     }
-                }
             } else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
 
                 if(!encryptedTxt.exists()){
@@ -378,6 +362,28 @@ public class UI extends JFrame {
         this.pack();
         this.setVisible(true);
     }
+
+    //Generierung von RSA Zeugs
+    public void generateKeys() {
+
+        p = RSA.getPrime();
+        System.out.println("p: " + p);
+        q = RSA.getPrime();
+        System.out.println("q: " + q);
+        n = RSA.getN(p,q);
+        n1TF.setText(n + " ");
+        n2TF.setText(n + " ");
+        e = RSA.getE(p,q);
+        eTF.setText(" " + e);
+        System.out.println("e: " + e);
+        d = RSA.getD(p,q,e);
+        dTF.setText(" " + d);
+        System.out.println("d: " + d);
+        generated = true;
+        System.out.println("KEYS GENERATED");
+
+    }
+
 
     public static void main(String[] args) {
         new UI();
