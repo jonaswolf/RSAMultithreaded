@@ -86,10 +86,12 @@ public class RSA {
 
 
   public static BigInteger getPrime(){
-    return BigInteger.probablePrime(4096,new Random());
+    BigInteger p = BigInteger.probablePrime(4096,new Random());
+    while (!p.isProbablePrime(999999999)){
+      p = BigInteger.probablePrime(4096,new Random());
+    }
+    return p;
   }
-
-
 
   //Methode um e zu berechnen. von Arthur
   public static BigInteger getE(BigInteger p, BigInteger q){
