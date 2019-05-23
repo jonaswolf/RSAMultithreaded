@@ -7,10 +7,6 @@ public class RSA {
    * encry Methode von Dennis und Arthur
    * @param word
    * Die Sequenz die Verschlüsselt werden soll
-   * @param p
-   * Eine möglichst zufällige Primzahl im BigInteger Format
-   * @param q
-   * Eine möglichst zufällige Primzahl im BigInteger Format
    * @param e
    * Muss eine Zahl sein bei der ggT(e,phi)== 1 ist.
    * @return
@@ -39,7 +35,10 @@ public class RSA {
     for(int i = 0;i<word.length()%threadAnz;i++){
       int buchstabe = ((int)word.charAt((teilLaenge*threadAnz)+i))+100;
       cacheWord = cacheWord+buchstabe;
-      wordsBigInt[i] = new BigInteger(cacheWord);
+      wordsBigInt[threadAnz] = new BigInteger(cacheWord);
+    }
+    for(int i = 0;i<wordsBigInt.length;i++){
+      System.out.println(wordsBigInt[i]);
     }
     //Funktionale Verschlüsselung der einzelnen Array Elemente
     wordsBigInt =
@@ -51,39 +50,38 @@ public class RSA {
     return wordsBigInt;
   }
 
-  public static BigInteger[] decry(String encryped, BigInteger n, BigInteger d){
-    if(encryped.equals("")){
-      return new BigInteger[0];
-    }
-    //Bestimmung der relativen Größe der Zeichen Gruppe.
-    int threadAnz = 4;
-    //Vorbereitung eines BigInt Arrays
-    String[] encryptedWords = new String[threadAnz+1];
-    int teilLaenge = (encryped.length()-(encryped.length()%threadAnz))/threadAnz;
-    BigInteger[] encryptedWordsBigInt = new BigInteger[threadAnz+1];
-    encryptedWordsBigInt[threadAnz] = BigInteger.valueOf(0);
-    String cacheWord = "";
-    for(int i = 0;i<threadAnz;i++){
-      for(int o = 0;o<teilLaenge;o++){
-        int buchstabe = ((int)encryped.charAt((teilLaenge*i)+o))+100;
-        cacheWord = cacheWord+buchstabe;
-      }
-      encryptedWordsBigInt[i] = new BigInteger(cacheWord);
-      cacheWord = "";
-    }
-    for(int i = 0;i<encryped.length()%threadAnz;i++){
-      int buchstabe = ((int)encryped.charAt((teilLaenge*threadAnz)+i))+100;
-      cacheWord = cacheWord+buchstabe;
-      encryptedWordsBigInt[i] = new BigInteger(cacheWord);
-    }
+  public static String decry(BigInteger[] list, BigInteger n, BigInteger d){
     //Funktionale Verschlüsselung der einzelnen Array Elemente
-    encryptedWordsBigInt =
+    list =
         Arrays
-            .stream(encryptedWordsBigInt)
+            .stream(list)
             .parallel()
             .map(x -> x.modPow(d,n))
             .toArray(BigInteger[]::new);
-    return encryptedWordsBigInt;
+    for(int i =0;i<list.length;i++){
+      System.out.println(list[i]);
+    }
+    String[] wordList = new String[list.length];
+    for(int i=0;i<list.length;i++){
+      wordList[i] = list[i].toString();
+    }
+    String word ="";
+    for(int i=0;i<wordList.length;i++){
+      for(int o=0;o<wordList[i].length();o++){
+       String cacheWord = ""+wordList[i].charAt(o);
+       o++;
+       cacheWord = cacheWord+wordList[i].charAt(o);
+       o++;
+       cacheWord = cacheWord+wordList[i].charAt(o);
+       int cacheChar = Integer.parseInt(cacheWord)-100;
+       char chara = (char)cacheChar;
+       word = word+chara;
+
+
+
+      }
+    }
+    return word;
   }
 
 
@@ -121,7 +119,7 @@ public class RSA {
   }
 
   public static BigInteger getD(BigInteger p, BigInteger q,BigInteger e){
-    BigInteger phi = (p.subtract(BigInteger.valueOf(0))).multiply(q.subtract(BigInteger.valueOf(0)));
+    BigInteger phi = (p.subtract(BigInteger.valueOf(1))).multiply(q.subtract(BigInteger.valueOf(1)));
   return phi.add(inverses.fkt(phi,e));
   }
 

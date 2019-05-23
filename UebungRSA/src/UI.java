@@ -202,12 +202,8 @@ public class UI extends JFrame {
                     System.out.println("YOU CAN NOT DECRYPT WITHOUT KEY");
                 }
                 if(encryptedWord.getText().length()>4){
-                    decryptedWordsList = RSA.decry(encryptedWord.getText(),n, d);
-                    String result = ("");
-                    for(int i = 0;i<decryptedWordsList.length;i++){
-                        result = result+(decryptedWordsList[i].toString())+" ";
-                    }
-                    decryptedWord.setText(result);
+                    decryptedWord.setText(RSA.decry(wordsList,n,d));
+                    encryptedWord.setText("");
                 }
                 else if(inputText.getText().length()==0){ }
                 else {
