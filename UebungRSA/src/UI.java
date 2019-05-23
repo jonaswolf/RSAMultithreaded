@@ -8,7 +8,6 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
 
 public class UI extends JFrame {
 
@@ -21,10 +20,12 @@ public class UI extends JFrame {
     private static final String IMPORTTEXT_COMMAND = "ImportText";
     private static final String EXPORTPRIV_COMMAND = "exportPriv";
     private static final String EXPORTPUB_COMMAND = "exportPub";
+    private static final String IMPORT_PRIVTE_KEY_COMMAND = "importPriv";
+    private static final String CLEAR_COMMAND ="clear";
     private JFileChooser fc;
 
     File encryptedTxt = new File("encrypted.txt");
-
+    File selectedFile;
 
     BigInteger p;
     BigInteger q;
@@ -35,6 +36,10 @@ public class UI extends JFrame {
     JTextField n2TF;
     JTextField dTF;
     JTextField eTF;
+
+    String pattern01 = "n: ";
+    String pattern02 = "d: ";
+    String pattern03 = "e: ";
 
     boolean generated = false;
     BigInteger[] wordsList;
@@ -115,12 +120,18 @@ public class UI extends JFrame {
         JButton generateButton = new JButton("GENERATE");
         JButton exportPriv = new JButton("Export PrivateKey");
         JButton exportPub = new JButton("Export PublicKey");
+        JButton importPriv = new JButton("Import PrivateKey");
+        JButton clear = new JButton("CLEAR");
+
+        generate.add(importPriv);
         generate.add(generateButton);
         generate.add(exportPriv);
         generate.add(exportPub);
+        generate.add(clear);
 
         //create & assign elements for inputAndOutput area
         JTextField inputText = new JTextField("INSERT TEXT");
+
         //If user clicks on the textfield, hint will disappear
         inputText.addMouseListener(new MouseAdapter(){
             @Override
@@ -128,6 +139,7 @@ public class UI extends JFrame {
                 inputText.setText("");
             }
         });
+
         JTextField encryptedWord = new JTextField("");
         JTextField decryptedWord = new JTextField("");
 
@@ -153,8 +165,10 @@ public class UI extends JFrame {
         //create & assign elements for decryptAndEnctyptButton
         JButton encryptButton = new JButton("ENCRYPT");
         JButton decryptButton = new JButton("DECRYPT");
-        JButton copyEncryWordBtn = new JButton("COPY");
+        JButton copyEncryWordBtn = new JButton("COPY ENCRY WORD");
         JButton importDecryptWord = new JButton("IMPORT");
+
+
         decryptAndEncryptButtonPanel.add(copyEncryWordBtn);
         decryptAndEncryptButtonPanel.add(encryptButton);
         decryptAndEncryptButtonPanel.add(decryptButton);
@@ -178,7 +192,8 @@ public class UI extends JFrame {
         importDecryptWord.setActionCommand(IMPORTTEXT_COMMAND);
         exportPriv.setActionCommand(EXPORTPRIV_COMMAND);
         exportPub.setActionCommand(EXPORTPUB_COMMAND);
-
+        importPriv.setActionCommand(IMPORT_PRIVTE_KEY_COMMAND);
+        clear.setActionCommand(CLEAR_COMMAND);
 
         ActionListener buttonlistener = a -> {
             if (a.getActionCommand().equals(ENCRYPT_COMMAND)) {
@@ -259,9 +274,9 @@ public class UI extends JFrame {
                                 e1.printStackTrace();
                             }
                         }
+                        // Export in File
                         try (FileWriter myFileWriter = new FileWriter(newFile)) {
-                            myFileWriter.write("n: " + n + System.getProperty("line.separator"));
-                            myFileWriter.write("d: " + d);
+                            myFileWriter.write("n: \n" + n + "\n" + "d: \n" + d);
                         } catch (IOException ioe3) {
                             ioe3.printStackTrace();
                         }
@@ -305,8 +320,9 @@ public class UI extends JFrame {
                             }
                         }
                         try (FileWriter myFileWriter = new FileWriter(newFile)) {
-                            myFileWriter.write("n: " + n + System.getProperty("line.separator"));
-                            myFileWriter.write("e: " + e);
+                            myFileWriter.write("n: \n" + n + "\n" + "e: \n" + e);
+                            System.out.println("e:" + e);
+                            System.out.println("n: " + n );
                         } catch (IOException ioe3) {
                             ioe3.printStackTrace();
                         }
@@ -334,6 +350,9 @@ public class UI extends JFrame {
                 try (FileReader myFileReader = new FileReader(encryptedTxt); BufferedReader myLineReader = new BufferedReader(myFileReader)){
                     String line;
                     while((line = myLineReader.readLine()) != null){
+                        if((line = myLineReader.readLine()).contains("Encrypted Text:")){
+                            line = myLineReader.readLine();
+                        }
                         System.out.println(line);
                         encryptedWord.setText(line);
                     }
@@ -343,7 +362,45 @@ public class UI extends JFrame {
                     e.printStackTrace();
                 }
                 System.out.println("TEXT IMPORTED");
+            }else if (a.getActionCommand().equals(IMPORT_PRIVTE_KEY_COMMAND)){
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    selectedFile = fileChooser.getSelectedFile();
+                    System.out.println(selectedFile.getName());
+                }
+                try (FileReader myFileReader = new FileReader(selectedFile); BufferedReader myLineReader = new BufferedReader(myFileReader)){
+                    String line;
+                    while ((line = myLineReader.readLine())!= null){
+                        if((line = myLineReader.readLine()).contains("n:") || (line = myLineReader.readLine()).contains("d:") || (line = myLineReader.readLine()).contains("e:")){
+                            line = myLineReader.readLine();
+                            int t = 0;
+                            if(t == 0){
+                                n1TF.setText(line);
+                                BigInteger cache = new BigInteger(line);
+                                n = cache;
+                                t++;
+                            } else if (t == 1){
+                                dTF.setText(line);
+                                BigInteger cache = new BigInteger(line);
+                                d = cache;
+                                t++;
+                            }
+                        }
+                        System.out.println(line);
+                    }
+                }catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }else if (a.getActionCommand().equals(CLEAR_COMMAND)){
+                n1TF.setText("");
+                n2TF.setText("");
+                eTF.setText("");
+                dTF.setText("");
             }
+
         };
 
         encryptButton.addActionListener(buttonlistener);
@@ -353,6 +410,7 @@ public class UI extends JFrame {
         importDecryptWord.addActionListener(buttonlistener);
         exportPriv.addActionListener(buttonlistener);
         exportPub.addActionListener(buttonlistener);
+        importPriv.addActionListener(buttonlistener);
 
         // combine Panels
         keyGeneratorPanel.add(keys);
