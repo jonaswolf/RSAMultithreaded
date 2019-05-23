@@ -83,6 +83,12 @@ public class UI extends JFrame {
         dTF.setEditable(false);
         eTF.setEditable(false);
 
+        Dimension numberDimension = new Dimension(100, 20);
+        n1TF.setPreferredSize(numberDimension);
+        n2TF.setPreferredSize(numberDimension);
+        dTF.setPreferredSize(numberDimension);
+        eTF.setPreferredSize(numberDimension);
+
 
         keys.add(new JLabel("Private Key: "));
         keys.add(new JLabel(" n: "));
@@ -132,6 +138,8 @@ public class UI extends JFrame {
         encryptedWord.setEditable(false);
         decryptedWord.setEditable(false);
 
+
+
         inputAndOutput.add(inputText);
         inputAndOutput.add(new JLabel("Ecrypted word"));
         inputAndOutput.add(encryptedWord);
@@ -143,7 +151,6 @@ public class UI extends JFrame {
         JButton decryptButton = new JButton("DECRYPT");
         JButton copyEncryWordBtn = new JButton("COPY");
         JButton importDecryptWord = new JButton("IMPORT");
-
         decryptAndEncryptButtonPanel.add(copyEncryWordBtn);
         decryptAndEncryptButtonPanel.add(encryptButton);
         decryptAndEncryptButtonPanel.add(decryptButton);
