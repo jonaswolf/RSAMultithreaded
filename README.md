@@ -1,7 +1,6 @@
-#Gruppe
-##Gruppe 1
-##Teammember
+# Gruppe 1
 
+## Teammember
 * Dennis Neumann
 * Arthur Siebert
 * Julie Pines
@@ -9,29 +8,27 @@
 * Soufian Elouafi
 * Jonas Wolf
 
-##Grobe Aufgabenaufteilung
-
+## Grobe Aufgabenaufteilung
 * Planung, Struktur, Leading: Arthur
 * UserInterface: Julie
 * Import/Export: Dennis, Julie
 * Generieren: Arthur, Dennis, Jonas
-* Verschlüßeln: Arthur, Dennis
-* Entschlüßeln: Arthur, Jonas
+* Verschlüsseln: Arthur, Dennis
+* Entschlüsseln: Arthur, Jonas
 * Diverses: Mahmoud, Soufian
 
-##Für die Zukunft
-
+## Für die Zukunft
 * Entschlüsseln formt derzeit noch nicht die Zahlen zurück in Code um #FIXME
 * Kleinere Änderungen an der UI
 * Primzahlen lassen sich derzeit nicht 100% sicher bestimmen
 
-##Zeitlicher Ablauf
+## Zeitlicher Ablauf
 
 Start: 04. April 2019
 
 Treffen: 10. April 2019
 
-TelKos: Julie, Arthur, Dennis, Jonas am 21.05, 23.05. --> besprechen der Ergebniße und des aktuellen Stands
+TelKos: Julie, Arthur, Dennis, Jonas am 21.05, 23.05. --> besprechen der Ergebnisse und des aktuellen Stands
 
 # **RSA_SEI_multithreaded**
 
@@ -104,7 +101,7 @@ TelKos: Julie, Arthur, Dennis, Jonas am 21.05, 23.05. --> besprechen der Ergebni
 * [x] Randomizer Methode
 * [X] User Interface
 * [ ] Verschlüsselte Nachricht so abspeichern (.txt), dass man sie auf einem anderen PC entschlüsseln kann
-* [ ] dazu: Verschlüsselten Code als .txt abspeichern (mit d, N)
+* [X] dazu: Verschlüsselten Code als .txt abspeichern (mit d, N)
 * [ ] dazu: Import und Entschlüsselung der Daten aus der .txt Datei
 * [ ] Neben Verschlüsselungstextfeld: "Copy to Clipboard" - Button
 * [ ] Entschlüsseln formt derzeit noch nicht die Zahlen zurück in Code um #FIXME
