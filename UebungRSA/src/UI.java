@@ -21,6 +21,7 @@ public class UI extends JFrame {
     private static final String EXPORTPRIV_COMMAND = "exportPriv";
     private static final String EXPORTPUB_COMMAND = "exportPub";
     private static final String IMPORT_PRIVTE_KEY_COMMAND = "importPriv";
+    private static final String IMPORT_PUBLIC_KEY_COMMAND = "importPub";
     private static final String CLEAR_COMMAND ="clear";
     private JFileChooser fc;
 
@@ -46,6 +47,8 @@ public class UI extends JFrame {
     BigInteger[] decryptedWordsList;
 
     public UI (){
+
+        this.setTitle("RSA-Verfahren");
 
         //initialise RSA
         rsa = new RSA();
@@ -81,7 +84,6 @@ public class UI extends JFrame {
         n2TF = new JTextField();
         dTF = new JTextField();
         eTF = new JTextField();
-        JTextField keyfilename = new JTextField("Keyfile");
 
         n1TF.setEditable(false);
         n2TF.setEditable(false);
@@ -107,23 +109,19 @@ public class UI extends JFrame {
         keys.add(new JLabel(" e: "));
         keys.add(eTF);
 
-        keys.add(new JLabel("Filename for Export:"));
-        keys.add(keyfilename);
-
         n1TF.setAutoscrolls(true);
         n2TF.setAutoscrolls(true);
         eTF.setAutoscrolls(true);
         dTF.setAutoscrolls(true);
-        keyfilename.setAutoscrolls(true);
 
         //create & assign elements for generate area
         JButton generateButton = new JButton("GENERATE");
         JButton exportPriv = new JButton("Export PrivateKey");
         JButton exportPub = new JButton("Export PublicKey");
-        JButton importPriv = new JButton("Import PrivateKey");
+        JButton importPub = new JButton("Import PublicKey");
         JButton clear = new JButton("CLEAR");
 
-        generate.add(importPriv);
+        generate.add(importPub);
         generate.add(generateButton);
         generate.add(exportPriv);
         generate.add(exportPub);
@@ -166,13 +164,15 @@ public class UI extends JFrame {
         JButton encryptButton = new JButton("ENCRYPT");
         JButton decryptButton = new JButton("DECRYPT");
         JButton copyEncryWordBtn = new JButton("COPY ENCRY WORD");
-        JButton importDecryptWord = new JButton("IMPORT");
+        JButton importDecryptWord = new JButton("IMPORT WORD");
+        JButton importPriv = new JButton("IMPORT PRIVATE KEY");
 
 
         decryptAndEncryptButtonPanel.add(copyEncryWordBtn);
         decryptAndEncryptButtonPanel.add(encryptButton);
         decryptAndEncryptButtonPanel.add(decryptButton);
         decryptAndEncryptButtonPanel.add(importDecryptWord);
+        decryptAndEncryptButtonPanel.add(importPriv);
 
         // create & assign Borders
         Border etchedBorder = BorderFactory.createEtchedBorder();
@@ -192,6 +192,7 @@ public class UI extends JFrame {
         importDecryptWord.setActionCommand(IMPORTTEXT_COMMAND);
         exportPriv.setActionCommand(EXPORTPRIV_COMMAND);
         exportPub.setActionCommand(EXPORTPUB_COMMAND);
+        importPub.setActionCommand(IMPORT_PUBLIC_KEY_COMMAND);
         importPriv.setActionCommand(IMPORT_PRIVTE_KEY_COMMAND);
         clear.setActionCommand(CLEAR_COMMAND);
 
@@ -212,7 +213,7 @@ public class UI extends JFrame {
                 }
                 else if(inputText.getText().length()==0){ }
                 else {
-                    inputText.setText("Gib was ein das sich lohnt zu verschlüsseln");
+                    inputText.setText("TYPE IN SOMETHING THATS WORTH ENCRYPTING.");
                 }
                 System.out.println("ENCRYPT");
                 //System.out.println(encryptedWord.getText());
@@ -226,8 +227,10 @@ public class UI extends JFrame {
                     System.out.println("YOU CAN NOT DECRYPT WITHOUT KEY");
                 }
                 if(encryptedWord.getText().length()>4){
-                    decryptedWord.setText(RSA.decry(wordsList,n,d));
+
+                    decryptedWord.setText(RSA.decry(wordsList, n, d));
                     encryptedWord.setText("");
+
                 }
                 else if(inputText.getText().length()==0){ }
                 else {
@@ -243,92 +246,90 @@ public class UI extends JFrame {
                     //System.out.println("NO KEYS TO EXPORT.");
                     //entweder generieren, oder Ausgabe dass kein Schlüssel generiert ist.
                     generateKeys();}
-                    //FileChooser erstellen
-                    fc = new JFileChooser();
+                //FileChooser erstellen
+                fc = new JFileChooser();
 
-                    //Erlaube nur TextFiles
-                    fc.setAcceptAllFileFilterUsed(false);
-                    FileNameExtensionFilter filter = new FileNameExtensionFilter("TextFiles", "txt", "text");
-                    fc.setFileFilter(filter);
+                //Erlaube nur TextFiles
+                fc.setAcceptAllFileFilterUsed(false);
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("TextFiles", "txt", "text");
+                fc.setFileFilter(filter);
 
-                    int returnVal = fc.showSaveDialog(UI.this);
-                    if (returnVal == JFileChooser.APPROVE_OPTION) {
-                        File file = fc.getSelectedFile();
-                        //Datei speichern und beschriften
-                        System.out.println("Saving PrivateKey-TextFile: " + file.getName() + " to " + file.getAbsolutePath());
-                        String filename = fc.getSelectedFile().getName();
-                        //Prüfen, ob Dateiendung bereits mit angegeben wurde
-                        final String EXTENSION = ".txt";
-                        String filepath = fc.getSelectedFile().toString();
-                        if(!filename.endsWith(EXTENSION)) {
-                            filename = filepath + EXTENSION;
-                        } else {
-                            filename = filepath;
-                        }
-                        //String filepath = fc.getSelectedFile().toString();
-                        File newFile = new File(/*filepath, */ filename);
-                        if(!newFile.exists()) {
-                            try {
-                                newFile.createNewFile();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                        }
-                        // Export in File
-                        try (FileWriter myFileWriter = new FileWriter(newFile)) {
-                            myFileWriter.write("n: \n" + n + "\n" + "d: \n" + d);
-                        } catch (IOException ioe3) {
-                            ioe3.printStackTrace();
-                        }
+                int returnVal = fc.showSaveDialog(UI.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    //Datei speichern und beschriften
+                    System.out.println("Saving PrivateKey-TextFile: " + file.getName() + " to " + file.getAbsolutePath());
+                    String filename = fc.getSelectedFile().getName();
+                    //Prüfen, ob Dateiendung bereits mit angegeben wurde
+                    final String EXTENSION = ".txt";
+                    String filepath = fc.getSelectedFile().toString();
+                    if(!filename.endsWith(EXTENSION)) {
+                        filename = filepath + EXTENSION;
                     } else {
-                        System.out.println("Save command cancelled by user.");
+                        filename = filepath;
                     }
+                    File newFile = new File(filename);
+                    if(!newFile.exists()) {
+                        try {
+                            newFile.createNewFile();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    // Export in File
+                    try (FileWriter myFileWriter = new FileWriter(newFile)) {
+                        myFileWriter.write("n:"+ System.lineSeparator() + n + System.lineSeparator()+ "d:" + System.lineSeparator() + d);
+                    } catch (IOException ioe3) {
+                        ioe3.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Save command cancelled by user.");
+                }
             } else if(a.getActionCommand().equals(EXPORTPUB_COMMAND)) { //von Dennis
                 if(!generated) {
                     //System.out.println("NO KEYS TO EXPORT.");
                     //entweder generieren, oder Ausgabe dass kein Schlüssel generiert ist.
                     generateKeys(); }
-                    //FileChooser erstellen
-                    fc = new JFileChooser();
+                //FileChooser erstellen
+                fc = new JFileChooser();
 
-                    //Erlaube nur TextFiles
-                    fc.setAcceptAllFileFilterUsed(false);
-                    FileNameExtensionFilter filter = new FileNameExtensionFilter("TextFiles", "txt", "text");
-                    fc.setFileFilter(filter);
+                //Erlaube nur TextFiles
+                fc.setAcceptAllFileFilterUsed(false);
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("TextFiles", "txt", "text");
+                fc.setFileFilter(filter);
 
-                    int returnVal = fc.showSaveDialog(UI.this);
-                    if (returnVal == JFileChooser.APPROVE_OPTION) {
-                        File file = fc.getSelectedFile();
-                        //Datei speichern und beschriften
-                        System.out.println("Saving PublicKey-TextFile: " + file.getName() + " to " + file.getAbsolutePath());
-                        String filename = fc.getSelectedFile().getName();
-                        //Prüfen, ob Dateiendung bereits mit angegeben wurde
-                        final String EXTENSION = ".txt";
-                        String filepath = fc.getSelectedFile().toString();
-                        if(!filename.endsWith(EXTENSION)) {
-                            filename = filepath + EXTENSION;
-                        } else {
-                            filename = filepath;
-                        }
-                        //String filepath = fc.getSelectedFile().toString();
-                        File newFile = new File(/*filepath, */ filename);
-                        if(!newFile.exists()) {
-                            try {
-                                newFile.createNewFile();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                        }
-                        try (FileWriter myFileWriter = new FileWriter(newFile)) {
-                            myFileWriter.write("n: \n" + n + "\n" + "e: \n" + e);
-                            System.out.println("e:" + e);
-                            System.out.println("n: " + n );
-                        } catch (IOException ioe3) {
-                            ioe3.printStackTrace();
-                        }
+                int returnVal = fc.showSaveDialog(UI.this);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    //Datei speichern und beschriften
+                    System.out.println("Saving PublicKey-TextFile: " + file.getName() + " to " + file.getAbsolutePath());
+                    String filename = fc.getSelectedFile().getName();
+                    //Prüfen, ob Dateiendung bereits mit angegeben wurde
+                    final String EXTENSION = ".txt";
+                    String filepath = fc.getSelectedFile().toString();
+                    if(!filename.endsWith(EXTENSION)) {
+                        filename = filepath + EXTENSION;
                     } else {
-                        System.out.println("Save command cancelled by user.");
+                        filename = filepath;
                     }
+                    File newFile = new File(filename);
+                    if(!newFile.exists()) {
+                        try {
+                            newFile.createNewFile();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    try (FileWriter myFileWriter = new FileWriter(newFile)) {
+                        myFileWriter.write("n:" + System.lineSeparator() + n + System.lineSeparator() + "e:" + System.lineSeparator() + e);
+                        System.out.println("e:" + e);
+                        System.out.println("n:" + n );
+                    } catch (IOException ioe3) {
+                        ioe3.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Save command cancelled by user.");
+                }
             } else if(a.getActionCommand().equals(COPYENCRYPTEDTEXT_COMMAND)){
 
                 if(!encryptedTxt.exists()){
@@ -339,7 +340,7 @@ public class UI extends JFrame {
                     }
                 }
                 try(FileWriter myFileWriter = new FileWriter(encryptedTxt, false)){
-                    myFileWriter.write("Encrypted Text: \n" + encryptedWord.getText());
+                    myFileWriter.write("Encrypted Text:" + System.lineSeparator() + encryptedWord.getText());
                 }catch (IOException e){
                     e.printStackTrace();
                 }
@@ -362,39 +363,79 @@ public class UI extends JFrame {
                     e.printStackTrace();
                 }
                 System.out.println("TEXT IMPORTED");
-            }else if (a.getActionCommand().equals(IMPORT_PRIVTE_KEY_COMMAND)){
+
+            }else if (a.getActionCommand().equals(IMPORT_PRIVTE_KEY_COMMAND)) {
                 JFileChooser fileChooser = new JFileChooser();
                 int returnValue = fileChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     selectedFile = fileChooser.getSelectedFile();
                     System.out.println(selectedFile.getName());
                 }
-                try (FileReader myFileReader = new FileReader(selectedFile); BufferedReader myLineReader = new BufferedReader(myFileReader)){
+                try (FileReader myFileReader = new FileReader(selectedFile); BufferedReader myLineReader = new BufferedReader(myFileReader)) {
                     String line;
-                    while ((line = myLineReader.readLine())!= null){
-                        if((line = myLineReader.readLine()).contains("n:") || (line = myLineReader.readLine()).contains("d:") || (line = myLineReader.readLine()).contains("e:")){
+                    while ((line = myLineReader.readLine()) != null) {
+                        if (line.contains("n:")) {
                             line = myLineReader.readLine();
-                            int t = 0;
-                            if(t == 0){
-                                n1TF.setText(line);
-                                BigInteger cache = new BigInteger(line);
-                                n = cache;
-                                t++;
-                            } else if (t == 1){
-                                dTF.setText(line);
-                                BigInteger cache = new BigInteger(line);
-                                d = cache;
-                                t++;
-                            }
+                            n1TF.setText(line);
+                            System.out.println(line);
+                            BigInteger cache = new BigInteger(line);
+                            n = cache;
+                            System.out.println("n: " + n + "\n cache: " + cache);
+                        } else if (line.contains("d:")) {
+                            line = myLineReader.readLine();
+                            dTF.setText(line);
+                            System.out.println(line);
+                            BigInteger cache = new BigInteger(line);
+                            d = cache;
+                            System.out.println("d: " + d + "\n cache: " + cache);
+                        } else {
+                            myLineReader.readLine();
+                            n1TF.setText("BOOOO");
                         }
                         System.out.println(line);
                     }
-                }catch (FileNotFoundException e) {
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else if (a.getActionCommand().equals(CLEAR_COMMAND)){
+
+            }else if (a.getActionCommand().equals(IMPORT_PUBLIC_KEY_COMMAND)) {
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    selectedFile = fileChooser.getSelectedFile();
+                    System.out.println(selectedFile.getName());
+                }
+                try (FileReader myFileReader = new FileReader(selectedFile); BufferedReader myLineReader = new BufferedReader(myFileReader)) {
+                    String line;
+                    while ((line = myLineReader.readLine()) != null) {
+                        if (line.contains("n:")) {
+                            line = myLineReader.readLine();
+                            n2TF.setText(line);
+                            System.out.println(line);
+                            BigInteger cache = new BigInteger(line);
+                            n = cache;
+                            System.out.println("n: " + n + "\n cache: " + cache);
+                        } else if (line.contains("e:")) {
+                            line = myLineReader.readLine();
+                            eTF.setText(line);
+                            System.out.println(line);
+                            BigInteger cache = new BigInteger(line);
+                            d = cache;
+                            System.out.println("e: " + d + "\n cache: " + cache);
+                        } else {
+                            myLineReader.readLine();
+                            n1TF.setText("BOOOO");
+                        }
+                        System.out.println(line);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (a.getActionCommand().equals(CLEAR_COMMAND)){
                 n1TF.setText("");
                 n2TF.setText("");
                 eTF.setText("");
@@ -410,7 +451,9 @@ public class UI extends JFrame {
         importDecryptWord.addActionListener(buttonlistener);
         exportPriv.addActionListener(buttonlistener);
         exportPub.addActionListener(buttonlistener);
+        importPub.addActionListener(buttonlistener);
         importPriv.addActionListener(buttonlistener);
+        clear.addActionListener(buttonlistener);
 
         // combine Panels
         keyGeneratorPanel.add(keys);
@@ -430,6 +473,8 @@ public class UI extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        //Lass den Frame in Bildschirmmitte erscheinen
+        this.setLocationRelativeTo(null);
     }
 
     //Generierung von RSA Zeugs
