@@ -21,6 +21,8 @@
 * Entschlüsseln formt derzeit noch nicht die Zahlen zurück in Code um #FIXME
 * Kleinere Änderungen an der UI
 * Primzahlen lassen sich derzeit nicht 100% sicher bestimmen
+* Index Out of Bounce Exception wird geworfen, wenn Primzahl nicht richtig generiert wird
+* Mehr Flexibilität beim Importieren von Keys gewünscht
 
 ## Zeitlicher Ablauf
 
